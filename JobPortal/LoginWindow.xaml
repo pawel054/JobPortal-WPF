@@ -1,0 +1,46 @@
+﻿<Window x:Class="JobPortal.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JobPortal"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="700" Width="540"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Background="Transparent">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Border CornerRadius="37" Background="white" BorderThickness="1" Width="500" Height="650" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,40,50">
+        <Border.Effect>
+            <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
+        </Border.Effect>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" VerticalAlignment="Center" Click="CloseWindowButton" Background="#400DD0" HorizontalAlignment="Right" Width="60" Height="35" Margin="0,0,20,0" Foreground="White" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="14">
+                <Button.Content>
+                    <Image Source="Imgs/UI/Icons/cross.png" Width="15"/>
+                </Button.Content>
+            </Button>
+            <StackPanel Grid.Row="1">
+                <TextBlock Text="Zaloguj się" HorizontalAlignment="Center" FontWeight="Bold" FontSize="35" Margin="0,0,0,30"/>
+                <Image Source="Imgs/UI/login_user.png" Width="200"/>
+                <TextBox x:Name="txtLogin" Height="40" Width="350" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Adres e-mail" Margin="0,30,0,0"/>
+                <TextBox x:Name="txtPassword" Height="40" Width="350" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Hasło" Margin="0,20,0,30"/>
+                <Button x:Name="loginBtn" Content="Zaloguj" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="45" Width="200" Style="{StaticResource RoundedButtonStyle}" Tag="20"/>
+                <TextBlock FontSize="15" HorizontalAlignment="Center" Margin="0,20,0,0">
+                    <Run Text="Nie masz jeszcze konta?"/>
+                    <Run Text="Utwórz konto" Foreground="#400DD0" FontWeight="DemiBold"/>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

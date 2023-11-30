@@ -23,10 +23,6 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Background="Aqua">
@@ -43,33 +39,9 @@
                 <TextBlock Text="LOGO" Grid.Column="0" VerticalAlignment="Center" FontSize="15"/>
                 <TextBlock Text="Strona główna" Grid.Column="1" VerticalAlignment="Center" FontSize="15"/>
                 <TextBlock Text="Oferty pracy" Grid.Column="2" VerticalAlignment="Center" FontSize="15"/>
-                <Button Content="Konto" Grid.Column="4" VerticalAlignment="Center" Background="#400DD0" HorizontalAlignment="Left" Width="110" Height="45" Foreground="White" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="20"/>
+                <Button Content="Konto" Grid.Column="4" VerticalAlignment="Center" Background="#400DD0" HorizontalAlignment="Left" Width="110" Height="45" Foreground="White" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="TestLogin"/>
             </Grid>
-            <StackPanel VerticalAlignment="Center" Grid.Column="1" Grid.Row="1">
-                <TextBlock Text="21 ofert od najlepszych pracodawców" VerticalAlignment="Center" FontSize="19" Margin="0,20,0,20" HorizontalAlignment="Center"/>
-            </StackPanel>
-            <TextBlock Text="Wyszukiwarka ofert" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold"/>
-            <Grid Grid.Column="1" Grid.Row="3">
-                <Rectangle Fill="Wheat" RadiusX="30" RadiusY="30" Width="1000"/>
-                <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="230"/>
-                        <ColumnDefinition Width="230"/>
-                        <ColumnDefinition Width="230"/>
-                        <ColumnDefinition Width="230"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="130"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <TextBox x:Name="txtStanowisko" Grid.Column="0" Grid.Row="0" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Stanowisko"/>
-                    <TextBox x:Name="txtKategoria" Grid.Column="1" Grid.Row="0" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Kategoria"/>
-                    <TextBox x:Name="txtLokalizacja" Grid.Column="2" Grid.Row="0" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Lokalizacja"/>
-                    <TextBox x:Name="txtOdleglosc" Grid.Column="3" Grid.Row="0" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="20" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Odległość (km)"/>
-                    <Button Content="Szukaj" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Foreground="White" Background="#400DD0" Width="200" Height="45" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="20"/>
-                    <TextBlock Text="Filtry zaawansowane" Grid.Column="0"  Grid.Row="1" Foreground="#400DD0" FontWeight="bold" Margin="50,0,0,0" FontSize="17" VerticalAlignment="Center"/>
-                </Grid>
-            </Grid>
+            <Frame x:Name="mainFrame" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden"/>
         </Grid>
     </ScrollViewer>
 </Window>

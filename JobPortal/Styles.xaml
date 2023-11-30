@@ -16,6 +16,7 @@
         </Setter>
     </Style>
 
+
     <Style x:Key="PlaceholderTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
         <Setter Property="Template">
             <Setter.Value>
@@ -23,7 +24,8 @@
                     <Grid>
                         <Border Background="{TemplateBinding Background}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"/>
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="15"/>
                         <TextBlock x:Name="PlaceholderText"
                                    Text="{TemplateBinding Tag}"
                                    Foreground="Gray"
@@ -43,5 +45,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 </ResourceDictionary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobPortal.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,17 @@ namespace JobPortal
         public MainWindow()
         {
             InitializeComponent();
+            mainFrame.Content = new MainPage(mainFrame);
+        }
+
+        private void TestLogin(object sender, RoutedEventArgs e)
+        {
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            loginWindow.Owner = Application.Current.MainWindow;
+            this.Opacity = 0.5;
+            loginWindow.ShowDialog();
+            this.Opacity = 1;
         }
     }
 }
