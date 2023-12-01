@@ -16,20 +16,15 @@ using System.Windows.Shapes;
 namespace JobPortal.Pages
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainPage.xaml
+    /// Logika interakcji dla klasy OfferPage.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class OfferPage : Page
     {
         private Frame mainFrame;
-        public MainPage(Frame mainFrame)
+        public OfferPage(Frame mainFrame)
         {
             InitializeComponent();
             this.mainFrame = mainFrame;
-        }
-
-        private void OfferBoxClicked(object sender, MouseButtonEventArgs e)
-        {
-            mainFrame.Content = new OfferPage(mainFrame);
         }
     }
 }

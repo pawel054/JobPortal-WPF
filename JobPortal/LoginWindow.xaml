@@ -31,14 +31,15 @@
                 </Button.Content>
             </Button>
             <StackPanel Grid.Row="1">
-                <TextBlock Text="Zaloguj się" HorizontalAlignment="Center" FontWeight="Bold" FontSize="35" Margin="0,0,0,30"/>
+                <TextBlock x:Name="windowTitle" Text="Zaloguj się" HorizontalAlignment="Center" FontWeight="Bold" FontSize="35" Margin="0,0,0,30"/>
                 <Image Source="Imgs/UI/login_user.png" Width="200"/>
                 <TextBox x:Name="txtLogin" Height="40" Width="350" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Adres e-mail" Margin="0,30,0,0"/>
-                <TextBox x:Name="txtPassword" Height="40" Width="350" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Hasło" Margin="0,20,0,30"/>
+                <TextBox x:Name="txtPassword" Height="40" Width="350" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Hasło" Margin="0,30,0,30"/>
                 <Button x:Name="loginBtn" Content="Zaloguj" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="45" Width="200" Style="{StaticResource RoundedButtonStyle}" Tag="20"/>
-                <TextBlock FontSize="15" HorizontalAlignment="Center" Margin="0,20,0,0">
-                    <Run Text="Nie masz jeszcze konta?"/>
-                    <Run Text="Utwórz konto" Foreground="#400DD0" FontWeight="DemiBold"/>
+                <Button x:Name="registerBtn" Content="Utwórz konto" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="45" Width="200" Visibility="Collapsed" Style="{StaticResource RoundedButtonStyle}" Tag="20"/>
+                <TextBlock FontSize="15" HorizontalAlignment="Center" Margin="0,30,0,0">
+                    <Run x:Name="run1" Text="Nie masz jeszcze konta?"/>
+                    <Run x:Name="run2" Text="Utwórz konto" Foreground="#400DD0" FontWeight="DemiBold" MouseLeftButtonDown="CreateAccountButton"/>
                 </TextBlock>
             </StackPanel>
         </Grid>

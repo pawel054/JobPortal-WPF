@@ -60,7 +60,7 @@
             </ItemsPanelTemplate>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Border Background="White" BorderBrush="Transparent" BorderThickness="0" Margin="20" CornerRadius="20" Width="400" Height="250">
+                    <Border Background="White" BorderBrush="Transparent" BorderThickness="0" Margin="20" CornerRadius="20" Width="400" Height="250" MouseLeftButtonDown="OfferBoxClicked">
                         <Border.Effect>
                             <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
                         </Border.Effect>
