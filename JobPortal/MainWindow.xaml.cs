@@ -27,6 +27,11 @@ namespace JobPortal
             mainFrame.Content = new MainPage(mainFrame);
         }
 
+        private void ProfileTest(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Content = new ProfilePage(mainFrame);
+        }
+
         private void TestLogin(object sender, RoutedEventArgs e)
         {
             LoginWindow loginWindow = new LoginWindow();

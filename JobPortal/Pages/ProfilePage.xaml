@@ -1,0 +1,571 @@
+﻿<Page x:Class="JobPortal.Pages.ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:JobPortal.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProfilePage">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Margin="0,20,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="550"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="0,0,15,0">
+            <Border Background="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" BorderBrush="Transparent" BorderThickness="0"  CornerRadius="30" Margin="0,0,0,30">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="140"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Background="#400DD0" Grid.Row="0">
+                        <Border.CornerRadius>
+                            <CornerRadius TopLeft="30" TopRight="30"/>
+                        </Border.CornerRadius>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Podstawowe informacje" Grid.Column="0" Foreground="White" FontSize="25" Margin="25,15,0,0"/>
+                            <Button Grid.Column="1" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" Margin="0,15,20,0">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
+                                        <TextBlock Text="Edytuj" VerticalAlignment="Center" Foreground="White" FontSize="17" FontWeight="DemiBold"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                    </Border>
+
+                    <Grid Grid.Row="1" Margin="20,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="../Imgs/UI/login_user.png" Width="120" HorizontalAlignment="Left" Margin="0,-75,0,0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                        <Label Content="Twoje dane" Grid.Row="1" FontSize="24" FontWeight="Medium" Margin="0,10,0,0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                        <Image Source="../Imgs/UI/login_user.png" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center"  Width="25"/>
+                        <TextBlock x:Name="txtNameSurname" Text="Imie Nazwisko" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="19" Margin="10,0,0,0"/>
+                        <Image Source="../Imgs/UI/login_user.png" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center"  Width="25"/>
+                        <TextBlock x:Name="txtBirthDate" Text="04.10.2005" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" FontSize="19" Margin="10,0,0,0"/>
+                        <Image Source="../Imgs/UI/login_user.png" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center"  Width="25"/>
+                        <TextBlock x:Name="txtEmail" Text="imie.nazwisko@mail.com" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" FontSize="19" Margin="10,0,0,0"/>
+                        <Image Source="../Imgs/UI/login_user.png" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"  Width="25"/>
+                        <TextBlock x:Name="txtPhoneNumber" Text="123 456 789" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" FontSize="19" Margin="10,0,0,0"/>
+                        <Image Source="../Imgs/UI/login_user.png" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center"  Width="25"/>
+                        <TextBlock x:Name="txtAdress" Text="Adres" Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" FontSize="19" Margin="10,0,0,0"/>
+                        <Label Content="Linki" Grid.Row="7" FontSize="24" FontWeight="Medium" Margin="0,10,0,0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                        <ItemsControl x:Name="itemsControlUrl" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2">
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,0,20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="../Imgs/UI/login_user.png" Width="20" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="link" Grid.Column="1" FontSize="18" Margin="10,0,0,0"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border Background="White" BorderBrush="Transparent" BorderThickness="0" CornerRadius="30" Margin="0,0,0,30">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Background="#400DD0" Grid.Row="0">
+                        <Border.CornerRadius>
+                            <CornerRadius TopLeft="30" TopRight="30"/>
+                        </Border.CornerRadius>
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Aktualne stanowisko" Grid.Column="0" Foreground="White" FontSize="25" Margin="25,0,0,0"/>
+                            <Button Grid.Column="1" Height="30" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Margin="0,0,20,0">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
+                                        <TextBlock Text="Edytuj" VerticalAlignment="Center" Foreground="White" FontSize="17" FontWeight="DemiBold"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                    </Border>
+                    <Grid x:Name="dataExistPosition" Grid.Row="1" Margin="20,20,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="txtCurrentPosition" Text="Stanowisko" Grid.Row="0" FontSize="23" FontWeight="DemiBold"/>
+                        <TextBlock Text="Opis" Grid.Row="1" FontSize="18" Foreground="#400DD0" Margin="0,20,0,5"/>
+                        <TextBlock x:Name="txtCurrentPositionDescription" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque convallis nibh sit amet mi fringilla pellentesque. " TextWrapping="Wrap" Grid.Row="2" FontSize="20" Margin="0,0,0,20"/>
+                    </Grid>
+                    <StackPanel x:Name="addNewPosition" Grid.Row="1" Visibility="Collapsed">
+                        <Border Background="Transparent" Width="200" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#400DD0" BorderThickness="3" CornerRadius="20" Margin="0,20,0,20">
+                            <Image Source="../Imgs/UI/login_user.png" Width="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Background="White" BorderBrush="Transparent" BorderThickness="0" CornerRadius="30" Margin="0,0,0,30">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Background="#400DD0" Grid.Row="0">
+                        <Border.CornerRadius>
+                            <CornerRadius TopLeft="30" TopRight="30"/>
+                        </Border.CornerRadius>
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Języki" Grid.Column="0" Foreground="White" FontSize="25" Margin="25,0,0,0"/>
+                            <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,0,20,0" HorizontalAlignment="Right">
+                                <Button Grid.Column="1" Height="30" Background="Transparent" BorderThickness="0" Margin="0,0,20,0">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
+                                            <TextBlock Text="Dodaj" VerticalAlignment="Center" Foreground="White" FontSize="17" FontWeight="DemiBold"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                                <Button Grid.Column="1" Height="30" Background="Transparent" BorderThickness="0">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
+                                            <TextBlock Text="Edytuj" VerticalAlignment="Center" Foreground="White" FontSize="17" FontWeight="DemiBold"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <Grid x:Name="dataExistLanguage" Grid.Row="1" Margin="20,20,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ItemsControl x:Name="itemsControlLanguage" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,0,20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="../Imgs/UI/login_user.png" Width="20" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" FontSize="18" Margin="10,0,0,0">
+                                            <Run Text="Angielski"/>
+                                            <Run Text="C2" Foreground="#400DD0" FontWeight="Medium"/>
+                                        </TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                    <StackPanel x:Name="addNewLayoutLanguage" Grid.Row="1" Visibility="Collapsed">
+                        <Border Background="Transparent" Width="200" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#400DD0" BorderThickness="3" CornerRadius="20" Margin="0,20,0,20">
+                            <Image Source="../Imgs/UI/login_user.png" Width="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="15,0,0,0">
+            <Border Background="White" BorderBrush="Transparent" BorderThickness="0" CornerRadius="30" Margin="0,0,0,30">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Background="#400DD0" Grid.Row="0">
+                        <Border.CornerRadius>
+                            <CornerRadius TopLeft="30" TopRight="30"/>
+                        </Border.CornerRadius>
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Podsumowanie zawodowe" Grid.Column="0" Foreground="White" FontSize="25" Margin="25,0,0,0"/>
+                            <Button Grid.Column="1" Height="30" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Margin="0,0,20,0">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
+                                        <TextBlock Text="Edytuj" VerticalAlignment="Center" Foreground="White" FontSize="17" FontWeight="DemiBold"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </Grid>
+                    </Border>
+                    <Grid x:Name="dataExistSummary" Grid.Row="1" Margin="20,20,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Opis" Grid.Row="0" FontSize="18" Foreground="#400DD0" Margin="0,0,0,5"/>
+                        <TextBlock x:Name="txtSummary" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque convallis nibh sit amet mi fringilla pellentesque. " TextWrapping="Wrap" Grid.Row="1" FontSize="20" Margin="0,0,0,20"/>
+                    </Grid>
+                    <StackPanel x:Name="addNewSummary" Grid.Row="1" Visibility="Collapsed">
+                        <Border Background="Transparent" Width="200" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#400DD0" BorderThickness="3" CornerRadius="20" Margin="0,20,0,20">
+                            <Image Source="../Imgs/UI/login_user.png" Width="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Background="White" BorderBrush="Transparent" BorderThickness="0" CornerRadius="30" Margin="0,0,0,30">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Background="#400DD0" Grid.Row="0">
+                        <Border.CornerRadius>
+                            <CornerRadius TopLeft="30" TopRight="30"/>
+                        </Border.CornerRadius>
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Doświadczenie zawodowe" Grid.Column="0" Foreground="White" FontSize="25" Margin="25,0,0,0"/>
+                            <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,0,20,0" HorizontalAlignment="Right">
+                                <Button Grid.Column="1" Height="30" Background="Transparent" BorderThickness="0" Margin="0,0,20,0">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
+                                            <TextBlock Text="Dodaj" VerticalAlignment="Center" Foreground="White" FontSize="17" FontWeight="DemiBold"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                                <Button Grid.Column="1" Height="30" Background="Transparent" BorderThickness="0">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
+                                            <TextBlock Text="Edytuj" VerticalAlignment="Center" Foreground="White" FontSize="17" FontWeight="DemiBold"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <Grid x:Name="dataExistExperience" Grid.Row="1" Margin="20,20,0,0">
+                        <ItemsControl x:Name="itemsControlExperience">
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,0,20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Content="Zawód" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="24" FontWeight="Medium" Margin="0,0,0,10"/>
+                                        <Image Source="../Imgs/UI/login_user.png" Width="20" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,10"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="1" Text="Firma" FontSize="18" Margin="10,0,0,10"/>
+                                        <Image Source="../Imgs/UI/login_user.png" Width="20" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,10"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="2" Text="Adres" FontSize="18" Margin="10,0,0,10"/>
+                                        <Image Source="../Imgs/UI/login_user.png" Width="20" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,10"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="3" Text="Okres pracy" FontSize="18" Margin="10,0,0,10"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                    <StackPanel x:Name="addNewLayoutExperience" Grid.Row="1" Visibility="Collapsed">
+                        <Border Background="Transparent" Width="200" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#400DD0" BorderThickness="3" CornerRadius="20" Margin="0,20,0,20">
+                            <Image Source="../Imgs/UI/login_user.png" Width="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Background="White" BorderBrush="Transparent" BorderThickness="0" CornerRadius="30" Margin="0,0,0,30">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Background="#400DD0" Grid.Row="0">
+                        <Border.CornerRadius>
+                            <CornerRadius TopLeft="30" TopRight="30"/>
+                        </Border.CornerRadius>
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Wykształcenie" Grid.Column="0" Foreground="White" FontSize="25" Margin="25,0,0,0"/>
+                            <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,0,20,0" HorizontalAlignment="Right">
+                                <Button Grid.Column="1" Height="30" Background="Transparent" BorderThickness="0" Margin="0,0,20,0">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
+                                            <TextBlock Text="Dodaj" VerticalAlignment="Center" Foreground="White" FontSize="17" FontWeight="DemiBold"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                                <Button Grid.Column="1" Height="30" Background="Transparent" BorderThickness="0">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
+                                            <TextBlock Text="Edytuj" VerticalAlignment="Center" Foreground="White" FontSize="17" FontWeight="DemiBold"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <Grid x:Name="dataExistEducation" Grid.Row="1" Margin="20,20,0,0">
+                        <ItemsControl x:Name="itemsControlEducation">
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,0,20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Content="Zawód" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="24" FontWeight="Medium" Margin="0,0,0,10"/>
+                                        <Image Source="../Imgs/UI/login_user.png" Width="20" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,10"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="1" Text="poziom" FontSize="18" Margin="10,0,0,10"/>
+                                        <Image Source="../Imgs/UI/login_user.png" Width="20" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,10"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="2" Text="kierunek" FontSize="18" Margin="10,0,0,10"/>
+                                        <Image Source="../Imgs/UI/login_user.png" Width="20" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,10"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="3" Text="adres" FontSize="18" Margin="10,0,0,10"/>
+                                        <Image Source="../Imgs/UI/login_user.png" Width="20" Grid.Column="0" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,10"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="4" Text="Okres pracy" FontSize="18" Margin="10,0,0,10"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                    <StackPanel x:Name="addNewEducation" Grid.Row="1" Visibility="Collapsed">
+                        <Border Background="Transparent" Width="200" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#400DD0" BorderThickness="3" CornerRadius="20" Margin="0,20,0,20">
+                            <Image Source="../Imgs/UI/login_user.png" Width="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Background="White" BorderBrush="Transparent" BorderThickness="0" CornerRadius="30" Margin="0,0,0,30">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Background="#400DD0" Grid.Row="0">
+                        <Border.CornerRadius>
+                            <CornerRadius TopLeft="30" TopRight="30"/>
+                        </Border.CornerRadius>
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Kursy, szkolenia, certyfikaty" Grid.Column="0" Foreground="White" FontSize="25" Margin="25,0,0,0"/>
+                            <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,0,20,0" HorizontalAlignment="Right">
+                                <Button Grid.Column="1" Height="30" Background="Transparent" BorderThickness="0" Margin="0,0,20,0">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
+                                            <TextBlock Text="Dodaj" VerticalAlignment="Center" Foreground="White" FontSize="17" FontWeight="DemiBold"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                                <Button Grid.Column="1" Height="30" Background="Transparent" BorderThickness="0">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
+                                            <TextBlock Text="Edytuj" VerticalAlignment="Center" Foreground="White" FontSize="17" FontWeight="DemiBold"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <Grid x:Name="dataExistCourses" Grid.Row="1" Margin="20,20,0,0">
+                        <ItemsControl x:Name="itemsControlCourses">
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,0,20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="40"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Content="Nazwa" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="24" FontWeight="Medium" Margin="0,0,0,10"/>
+                                        <Image Source="../Imgs/UI/login_user.png" Width="20" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,10"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="1" Text="organizator" FontSize="18" Margin="10,0,0,10"/>
+                                        <Image Source="../Imgs/UI/login_user.png" Width="20" Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20,0,0,10"/>
+                                        <TextBlock Grid.Column="1" Grid.Row="2" Text="data odbycia" FontSize="18" Margin="10,0,0,10"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                    <StackPanel x:Name="addNewCourses" Grid.Row="1" Visibility="Collapsed">
+                        <Border Background="Transparent" Width="200" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#400DD0" BorderThickness="3" CornerRadius="20" Margin="0,20,0,20">
+                            <Image Source="../Imgs/UI/login_user.png" Width="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Background="White" BorderBrush="Transparent" BorderThickness="0" CornerRadius="30" Margin="0,0,0,30">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
+                </Border.Effect>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Background="#400DD0" Grid.Row="0">
+                        <Border.CornerRadius>
+                            <CornerRadius TopLeft="30" TopRight="30"/>
+                        </Border.CornerRadius>
+                        <Grid VerticalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Umiejętności" Grid.Column="0" Foreground="White" FontSize="25" Margin="25,0,0,0"/>
+                            <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,0,20,0" HorizontalAlignment="Right">
+                                <Button Grid.Column="1" Height="30" Background="Transparent" BorderThickness="0" Margin="0,0,20,0">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
+                                            <TextBlock Text="Dodaj" VerticalAlignment="Center" Foreground="White" FontSize="17" FontWeight="DemiBold"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                                <Button Grid.Column="1" Height="30" Background="Transparent" BorderThickness="0">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
+                                            <TextBlock Text="Edytuj" VerticalAlignment="Center" Foreground="White" FontSize="17" FontWeight="DemiBold"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                    <Grid x:Name="dataExistSkills" Grid.Row="1" Margin="20,20,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ItemsControl x:Name="itemsControlSkills" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,0,20">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="../Imgs/UI/login_user.png" Width="20" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" Text="umiejętność" FontSize="18" Margin="10,0,0,0"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </Grid>
+                    <StackPanel x:Name="addNewSkills" Grid.Row="1" Visibility="Collapsed">
+                        <Border Background="Transparent" Width="200" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#400DD0" BorderThickness="3" CornerRadius="20" Margin="0,20,0,20">
+                            <Image Source="../Imgs/UI/login_user.png" Width="40" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Page>
