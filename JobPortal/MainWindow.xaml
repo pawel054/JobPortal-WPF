@@ -25,22 +25,27 @@
                 <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Background="Aqua">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="130"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="LOGO" Grid.Column="0" VerticalAlignment="Center" FontSize="15"/>
-                <TextBlock Text="Strona główna" Grid.Column="1" VerticalAlignment="Center" FontSize="15"/>
-                <TextBlock Text="Oferty pracy" Grid.Column="2" VerticalAlignment="Center" FontSize="15"/>
-                <Button Content="Konto" Grid.Column="4" VerticalAlignment="Center" Background="#400DD0" HorizontalAlignment="Left" Width="110" Height="45" Foreground="White" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="ProfileTest"/>
-            </Grid>
+            <Border Background="White" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" BorderBrush="Transparent" >
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
+                </Border.Effect>
+                <Grid VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="130"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="LOGO" Grid.Column="0" VerticalAlignment="Center" FontSize="15"/>
+                    <TextBlock Text="Strona główna" Grid.Column="1" VerticalAlignment="Center" FontSize="15"/>
+                    <TextBlock Text="Oferty pracy" Grid.Column="2" VerticalAlignment="Center" FontSize="15"/>
+                    <Button Content="Konto" Grid.Column="4" VerticalAlignment="Center" Background="#400DD0" HorizontalAlignment="Left" Width="110" Height="45" Foreground="White" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="ProfileTest"/>
+                </Grid>
+            </Border>
             <Frame x:Name="mainFrame" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden"/>
         </Grid>
     </ScrollViewer>

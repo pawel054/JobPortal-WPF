@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:JobPortal.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProfilePage">
+      Title="ProfilePage" ColumnDefinition.Width="60">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
