@@ -1,4 +1,5 @@
 ﻿using JobPortal.Pages;
+using JobPortal.Class;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace JobPortal
         public MainWindow()
         {
             InitializeComponent();
+            Database.CreateDb();
             mainFrame.Content = new MainPage(mainFrame);
         }
 
