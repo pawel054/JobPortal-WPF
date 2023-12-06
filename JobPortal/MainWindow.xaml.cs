@@ -27,6 +27,17 @@ namespace JobPortal
             InitializeComponent();
             Database.CreateDb();
             mainFrame.Content = new MainPage(mainFrame);
+            btnZaloguj.Visibility = Visibility.Visible;
+            txtLoggedIn.Visibility = Visibility.Collapsed;
+        }
+
+        public MainWindow(string email)
+        {
+            InitializeComponent();
+            btnZaloguj.Visibility = Visibility.Collapsed;
+            txtLoggedIn.Visibility = Visibility.Visible;
+            txtLoggedIn.Text = email;
+            mainFrame.Content = new MainPage(mainFrame);
         }
 
         private void ProfileTest(object sender, RoutedEventArgs e)

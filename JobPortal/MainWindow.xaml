@@ -35,7 +35,7 @@
                         <ColumnDefinition Width="120"/>
                         <ColumnDefinition Width="120"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="150"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -43,7 +43,8 @@
                     <TextBlock Text="LOGO" Grid.Column="0" VerticalAlignment="Center" FontSize="15"/>
                     <TextBlock Text="Strona główna" Grid.Column="1" VerticalAlignment="Center" FontSize="15"/>
                     <TextBlock Text="Oferty pracy" Grid.Column="2" VerticalAlignment="Center" FontSize="15"/>
-                    <Button Content="Konto" Grid.Column="4" VerticalAlignment="Center" Background="#400DD0" HorizontalAlignment="Left" Width="110" Height="45" Foreground="White" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="ProfileTest"/>
+                    <Button x:Name="btnZaloguj" Content="Zaloguj się" Grid.Column="4" VerticalAlignment="Center" Background="#400DD0" HorizontalAlignment="Left" Width="130" Height="45" Foreground="White" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="TestLogin"/>
+                    <TextBlock x:Name="txtLoggedIn" Grid.Column="4" VerticalAlignment="Center" Foreground="#400DD0" FontSize="15" FontWeight="Medium" Visibility="Collapsed"/>
                 </Grid>
             </Border>
             <Frame x:Name="mainFrame" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden"/>
