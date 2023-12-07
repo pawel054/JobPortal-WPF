@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobPortal.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,7 @@ namespace JobPortal.Pages
         {
             InitializeComponent();
             this.mainFrame = mainFrame;
+            itemsControl.DataContext = DatabaseOffer.GetLatestAddedOffers();
         }
 
         private void OfferBoxClicked(object sender, MouseButtonEventArgs e)

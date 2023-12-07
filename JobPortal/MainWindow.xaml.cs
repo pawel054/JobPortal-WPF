@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using JobPortal.Database;
 
 namespace JobPortal
 {
@@ -25,7 +26,7 @@ namespace JobPortal
         public MainWindow()
         {
             InitializeComponent();
-            Database.CreateDb();
+            DatabaseCreator.CreateDb();
             mainFrame.Content = new MainPage(mainFrame);
             btnZaloguj.Visibility = Visibility.Visible;
             txtLoggedIn.Visibility = Visibility.Collapsed;
@@ -47,7 +48,7 @@ namespace JobPortal
 
         private void TestLogin(object sender, RoutedEventArgs e)
         {
-            LoginWindow loginWindow = new LoginWindow();
+            LoginWindow loginWindow = new LoginWindow(this);
             loginWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             loginWindow.Owner = Application.Current.MainWindow;
             this.Opacity = 0.5;

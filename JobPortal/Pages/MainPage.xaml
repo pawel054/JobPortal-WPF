@@ -54,10 +54,12 @@
                 <TextBlock Text="Filtry zaawansowane" Grid.Column="0"  Grid.Row="1" Foreground="#400DD0" FontWeight="bold" Margin="50,0,0,0" FontSize="17" VerticalAlignment="Center"/>
             </Grid>
         </Grid>
-        <ItemsControl x:Name="itemsControl" Grid.Row="3">
-            <ItemsPanelTemplate>
-                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0" MaxWidth="1200"/>
-            </ItemsPanelTemplate>
+        <ItemsControl x:Name="itemsControl" ItemsSource="{Binding}" Grid.Row="3">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0" MaxWidth="1200"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border Background="White" BorderBrush="Transparent" BorderThickness="0" Margin="20" CornerRadius="20" Width="400" Height="250" MouseLeftButtonDown="OfferBoxClicked">
@@ -74,11 +76,11 @@
                                 <RowDefinition Height="100"/>
                                 <RowDefinition Height="100"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Text="Doradca klienta" FontSize="22" FontWeight="DemiBold" Grid.Column="0" Grid.Row="0" Margin="20,10,0,0"/>
-                            <TextBlock Text="Media Expert" FontSize="22" Grid.Column="0" Grid.Row="1" Margin="20,0,0,0"/>
-                            <TextBlock Text="LOGO" FontSize="22" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Location" FontSize="22" Grid.Column="0" Grid.Row="2" Margin="20,0,0,0"/>
-                            <TextBlock Text="payout" FontSize="22" Grid.Column="1" Grid.Row="2"/>
+                            <TextBlock Text="{Binding NazwaStanowiska}" FontSize="22" FontWeight="DemiBold" Grid.Column="0" Grid.Row="0" Margin="20,10,0,0"/>
+                            <TextBlock Text="{Binding Company.Name}" FontSize="22" Grid.Column="0" Grid.Row="1" Margin="20,0,0,0"/>
+                            <TextBlock Text="{Binding NazwaStanowiska}" FontSize="22" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Company.Adress}" FontSize="22" Grid.Column="0" Grid.Row="2" Margin="20,0,0,0"/>
+                            <TextBlock Text="{Binding Wynagrodzenie}" FontSize="22" Grid.Column="1" Grid.Row="2"/>
                         </Grid>
                     </Border>
                 </DataTemplate>

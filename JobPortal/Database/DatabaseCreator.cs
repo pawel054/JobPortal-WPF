@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace JobPortal
+namespace JobPortal.Database
 {
-    public class Database
+    public class DatabaseCreator
     {
         readonly private static string dbpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JobPortalDatabase.db");
         public static void CreateDb()
@@ -58,7 +58,7 @@ namespace JobPortal
 
         public static void AddNewUser(User user)
         {
-            if(CanUseEmail(user.Email))
+            if (CanUseEmail(user.Email))
             {
                 using (var db = new SqliteConnection($"Filename={dbpath}"))
                 {
@@ -81,34 +81,42 @@ namespace JobPortal
                 db.Open();
                 var insertCommand = new SqliteCommand();
                 insertCommand.Connection = db;
-                insertCommand.CommandText = "SELECT haslo, isadmin FROM uzytkownik WHERE email=@Email;";
+                insertCommand.CommandText = "SELECT email, haslo, isadmin FROM uzytkownik WHERE email=@Email;";
                 insertCommand.Parameters.AddWithValue("@Email", user.Email);
                 using (SqliteDataReader reader = insertCommand.ExecuteReader())
                 {
-                    while (reader.Read())
+                    if (reader.HasRows)
                     {
-                        string passwordHash = reader.GetString(0);
-                        bool isadmin = reader.GetBoolean(1);
-
-                        if(passwordHash != null && BCrypt.Net.BCrypt.Verify(user.Password, passwordHash))
+                        while (reader.Read())
                         {
-                            if (isadmin)
+                            string email = reader.GetString(0);
+                            string passwordHash = reader.GetString(1);
+                            bool isadmin = reader.GetBoolean(2);
+
+                            if (passwordHash != null && BCrypt.Net.BCrypt.Verify(user.Password, passwordHash))
                             {
-                                AdminWindow adminWindow = new AdminWindow();
-                                adminWindow.Show();
-                                currentWindow.Close();
+                                if (isadmin)
+                                {
+                                    AdminWindow adminWindow = new AdminWindow();
+                                    adminWindow.Show();
+                                    currentWindow.Close();
+                                }
+                                else
+                                {
+                                    MainWindow mainWindow = new MainWindow(user.Email);
+                                    mainWindow.Show();
+                                    currentWindow.Close();
+                                }
                             }
                             else
                             {
-                                MainWindow mainWindow = new MainWindow(user.Email);
-                                mainWindow.Show();
-                                currentWindow.Close();
+                                MessageBox.Show("niepoprawne dane");
                             }
                         }
-                        else
-                        {
-                            MessageBox.Show("Niepoprawne dane!");
-                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("email nie istnieje w bazie");
                     }
                 }
             }
@@ -124,7 +132,7 @@ namespace JobPortal
                 insertCommand.Connection = db;
                 insertCommand.CommandText = "SELECT COUNT(*) FROM uzytkownik WHERE email=@Email;";
                 insertCommand.Parameters.AddWithValue("@Email", email);
-                using(SqliteDataReader reader = insertCommand.ExecuteReader())
+                using (SqliteDataReader reader = insertCommand.ExecuteReader())
                 {
                     while (reader.Read())
                     {

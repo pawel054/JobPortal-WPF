@@ -9,17 +9,32 @@ namespace JobPortal.Class
     public class Offer
     {
         public int OfferID { get; set; }
-        public int CompanyID { get; set; }
-        public int CategoryID { get; set; }
-        public string PositionName { get; set; }
-        public string PositionLevel { get; set; }
-        public string ContractTyoe { get; set; }
-        public string JobType { get; set; }
-        public string Salary { get; set; }
-        public string WorkingDays { get; set; }
-        public string WorkingHours { get; set; }
-        public DateTime ExpirationDate { get; set; }
-        public string CompanyInformation { get; set; }
+        public Company Company { get; set; }
+        public Category Category { get; set; }
+        public string NazwaStanowiska { get; set; }
+        public string PoziomStanowiska { get; set; }
+        public string RodzajUmowy { get; set; }
+        public string RodzajPracy { get; set; }
+        public string WymiarZatrudnienia { get; set; }
+        public string Wynagrodzenie { get; set; }
+        public string DniPracy { get; set; }
+        public string GodzinyPracy { get; set; }
+        public DateTime DataWaznosci { get; set; }
 
+        public Offer(int offerID, Company company, Category category, string nazwaStanowiska, string poziomStanowiska, string rodzajUmowy, string rodzajPracy, string wymiarZatrudnienia, string wynagrodzenie, string dniPracy, string godzinyPracy, DateTime dataWaznosci)
+        {
+            OfferID = offerID;
+            Company = company;
+            Category = category;
+            NazwaStanowiska = nazwaStanowiska;
+            PoziomStanowiska = poziomStanowiska;
+            RodzajUmowy = rodzajUmowy;
+            RodzajPracy = rodzajPracy;
+            WymiarZatrudnienia = wymiarZatrudnienia;
+            Wynagrodzenie = wynagrodzenie;
+            DniPracy = dniPracy;
+            GodzinyPracy = godzinyPracy;
+            DataWaznosci = dataWaznosci;
+        }
     }
 }

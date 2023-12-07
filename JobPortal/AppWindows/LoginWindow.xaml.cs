@@ -1,4 +1,5 @@
 ﻿using JobPortal.Class;
+using JobPortal.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,11 @@ namespace JobPortal
     /// </summary>
     public partial class LoginWindow : Window
     {
-        public LoginWindow()
+        private Window mainWindow;
+        public LoginWindow(Window mainWindow)
         {
             InitializeComponent();
+            this.mainWindow = mainWindow;
         }
 
         private void CloseWindowButton(object sender, RoutedEventArgs e)
@@ -87,13 +90,13 @@ namespace JobPortal
             }
             if (status_ok)
             {
-                Database.AddNewUser(new User(email, HashPassword(pass)));
+                DatabaseCreator.AddNewUser(new User(email, HashPassword(pass)));
             }
         }
 
         private void LoginButton(object sender, RoutedEventArgs e)
         {
-            Database.LogIn(new User(txtEmail.Text, txtPassword.Password), this);
+            DatabaseCreator.LogIn(new User(txtEmail.Text, txtPassword.Password), mainWindow);
 
         }
 
