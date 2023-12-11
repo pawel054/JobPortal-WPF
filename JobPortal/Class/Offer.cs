@@ -20,8 +20,9 @@ namespace JobPortal.Class
         public string DniPracy { get; set; }
         public string GodzinyPracy { get; set; }
         public DateTime DataWaznosci { get; set; }
+        public string SciezkaObraz { get; set; }
 
-        public Offer(int offerID, Company company, Category category, string nazwaStanowiska, string poziomStanowiska, string rodzajUmowy, string rodzajPracy, string wymiarZatrudnienia, string wynagrodzenie, string dniPracy, string godzinyPracy, DateTime dataWaznosci)
+        public Offer(int offerID, Company company, Category category, string nazwaStanowiska, string poziomStanowiska, string rodzajUmowy, string rodzajPracy, string wymiarZatrudnienia, string wynagrodzenie, string dniPracy, string godzinyPracy, DateTime dataWaznosci, string sciezkaObraz)
         {
             OfferID = offerID;
             Company = company;
@@ -35,6 +36,7 @@ namespace JobPortal.Class
             DniPracy = dniPracy;
             GodzinyPracy = godzinyPracy;
             DataWaznosci = dataWaznosci;
+            SciezkaObraz = sciezkaObraz;
         }
     }
 }

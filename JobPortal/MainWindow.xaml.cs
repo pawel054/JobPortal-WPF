@@ -23,32 +23,45 @@ namespace JobPortal
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int userId;
+        private string email;
         public MainWindow()
         {
             InitializeComponent();
             DatabaseCreator.CreateDb();
             mainFrame.Content = new MainPage(mainFrame);
             btnZaloguj.Visibility = Visibility.Visible;
-            txtLoggedIn.Visibility = Visibility.Collapsed;
+            btnKonto.Visibility = Visibility.Collapsed;
         }
 
-        public MainWindow(string email)
+        public MainWindow(int userId, string email)
         {
             InitializeComponent();
             btnZaloguj.Visibility = Visibility.Collapsed;
-            txtLoggedIn.Visibility = Visibility.Visible;
-            txtLoggedIn.Text = email;
+            btnKonto.Visibility = Visibility.Visible;
             mainFrame.Content = new MainPage(mainFrame);
-        }
-
-        private void ProfileTest(object sender, RoutedEventArgs e)
-        {
-            mainFrame.Content = new ProfilePage(mainFrame);
+            this.email = email;
+            this.userId = userId;
         }
 
         private void TestLogin(object sender, RoutedEventArgs e)
         {
             LoginWindow loginWindow = new LoginWindow(this);
+            loginWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            loginWindow.Owner = Application.Current.MainWindow;
+            this.Opacity = 0.5;
+            loginWindow.ShowDialog();
+            this.Opacity = 1;
+        }
+
+        private void MenuMainPage(object sender, MouseButtonEventArgs e)
+        {
+            mainFrame.Content = new MainPage(mainFrame);
+        }
+
+        private void AccountButton(object sender, RoutedEventArgs e)
+        {
+            LoginWindow loginWindow = new LoginWindow(mainFrame, userId, email);
             loginWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             loginWindow.Owner = Application.Current.MainWindow;
             this.Opacity = 0.5;

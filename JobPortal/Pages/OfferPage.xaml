@@ -36,8 +36,8 @@
                 </Grid.ColumnDefinitions>
                 <Label Content="IMG" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                    <Label Content="Sprzedawca - kasjer" FontSize="27" />
-                    <Label Content="Media Markt" FontSize="15" FontWeight="DemiBold" Foreground="gray"/>
+                    <Label x:Name="txtStanowisko" Content="Sprzedawca - kasjer" FontSize="27" />
+                    <Label x:Name="txtFirma" Content="Media Markt" FontSize="15" FontWeight="DemiBold" Foreground="gray"/>
                 </StackPanel>
                 <Label Content="IMG2" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Grid>
@@ -60,7 +60,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Szczegóły oferty" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="28" Margin="0,30,0,30"/>
+                    <TextBlock Text="Szczegóły oferty" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" FontSize="28" FontWeight="Medium" Margin="0,30,0,40"/>
                     <Border Background="#e6e0f9" Grid.Column="0" Grid.Row="1" Width="290" Height="70" BorderBrush="Transparent" BorderThickness="0" CornerRadius="10" Margin="0,0,0,25">
                         <Grid Margin="20,0,20,0">
                             <Grid.ColumnDefinitions>
@@ -68,7 +68,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Element 1" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" Foreground="#400DD0" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="detailPoziom" Text="Element 1" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" Foreground="#400DD0" FontWeight="SemiBold"/>
                         </Grid>
                     </Border>
                     <Border Background="#e6e0f9" Grid.Column="0" Grid.Row="2" Width="290" Height="70" BorderBrush="Transparent" BorderThickness="0" CornerRadius="10" Margin="0,0,0,25">
@@ -78,7 +78,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Element 1" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" Foreground="#400DD0" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="detailUmowa" Text="Element 1" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" Foreground="#400DD0" FontWeight="SemiBold"/>
                         </Grid>
                     </Border>
                     <Border Background="#e6e0f9" Grid.Column="0" Grid.Row="3" Width="290" Height="70" BorderBrush="Transparent" BorderThickness="0" CornerRadius="10" Margin="0,0,0,25">
@@ -88,7 +88,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Element 1" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" Foreground="#400DD0" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="detailWymiar" Text="Element 1" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" Foreground="#400DD0" FontWeight="SemiBold"/>
                         </Grid>
                     </Border>
                     <Border Background="#e6e0f9" Grid.Column="0" Grid.Row="4" Width="290" Height="70" BorderBrush="Transparent" BorderThickness="0" CornerRadius="10" Margin="0,0,0,25">
@@ -98,10 +98,10 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Element 1" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" Foreground="#400DD0" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="detailRodzajPracy" Text="Element 1" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" Foreground="#400DD0" FontWeight="SemiBold"/>
                         </Grid>
                     </Border>
-                    <Border Background="#e6e0f9" Grid.Column="0" Grid.Row="5" Width="290" Height="70" BorderBrush="Transparent" BorderThickness="0" CornerRadius="10" Margin="0,0,0,30">
+                    <Border Background="#e6e0f9" Grid.Column="0" Grid.Row="5" Width="290" Height="70" BorderBrush="Transparent" BorderThickness="0" CornerRadius="10" Margin="0,0,0,50">
                         <Grid Margin="20,0,20,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="45"/>
@@ -109,8 +109,8 @@
                             </Grid.ColumnDefinitions>
                             <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <TextBlock Text="Element 1" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" Foreground="#400DD0" FontWeight="SemiBold"/>
-                                <TextBlock Text="9:00 - 12:00" VerticalAlignment="Center" Margin="20,2,0,0" FontSize="13"/>
+                                <TextBlock x:Name="detailDniPracy" Text="Element 1" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" Foreground="#400DD0" FontWeight="SemiBold"/>
+                                <TextBlock x:Name="detailGodzinyPracy" Text="9:00 - 12:00" VerticalAlignment="Center" Margin="20,2,0,0" FontSize="13"/>
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -124,7 +124,10 @@
                             </Grid.ColumnDefinitions>
                             <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <TextBlock Text="4000 - 6000 zł" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="24" Foreground="#400DD0" FontWeight="Bold"/>
+                                <TextBlock VerticalAlignment="Center" Margin="20,0,0,0" FontSize="24" Foreground="#400DD0" FontWeight="Bold">
+                                    <Run x:Name="detailWynagrodzenie"/>
+                                    <Run Text="zł"/>
+                                </TextBlock>
                                 <TextBlock Text="brutto / miesięcznie" VerticalAlignment="Center" Margin="20,2,0,0" FontSize="13"/>
                             </StackPanel>
                         </Grid>
@@ -136,7 +139,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="Element 1" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" Foreground="#400DD0" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="detailDataWaznosci" Text="Element 1" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" Foreground="#400DD0" FontWeight="SemiBold"/>
                         </Grid>
                     </Border>
                 </Grid>
@@ -146,20 +149,22 @@
                     <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
                 </Border.Effect>
                 <StackPanel>
-                    <TextBlock Text="Zakres obowiązków" HorizontalAlignment="Center" FontSize="28" Margin="0,30,0,30"/>
-                    <ItemsControl x:Name="itemsControlObowiazki">
-                        <ItemsPanelTemplate>
-                            <StackPanel/>
-                        </ItemsPanelTemplate>
+                    <TextBlock Text="Zakres obowiązków" HorizontalAlignment="Center" FontWeight="Medium" FontSize="28" Margin="0,30,0,30"/>
+                    <ItemsControl x:Name="itemsControlObowiazki" ItemsSource="{Binding}"  Margin="0,0,0,30">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="30,0,30,20">
+                                <Grid Margin="70,0,30,20">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="../Imgs/UI/login_user.png" Width="20" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Przykład 1" Grid.Column="1" FontSize="18" Margin="15,0,0,0"/>
+                                    <TextBlock Text="{Binding Content}" Grid.Column="1" FontSize="18" Margin="15,0,0,0"/>
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -171,20 +176,22 @@
                     <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
                 </Border.Effect>
                 <StackPanel>
-                    <TextBlock Text="Wymagania" HorizontalAlignment="Center" FontSize="28" Margin="0,30,0,30"/>
-                    <ItemsControl x:Name="itemsControlWymagania">
-                        <ItemsPanelTemplate>
-                            <StackPanel/>
-                        </ItemsPanelTemplate>
+                    <TextBlock Text="Wymagania" HorizontalAlignment="Center" FontSize="28" FontWeight="Medium" Margin="0,30,0,30"/>
+                    <ItemsControl x:Name="itemsControlWymagania" ItemsSource="{Binding}" Margin="0,0,0,30">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="30,0,30,20">
+                                <Grid Margin="70,0,30,20">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="30"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Image Source="../Imgs/UI/login_user.png" Width="20" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <TextBlock Text="Przykład 1" Grid.Column="1" FontSize="18" Margin="15,0,0,0"/>
+                                    <TextBlock Text="{Binding Content}" Grid.Column="1" FontSize="18" Margin="15,0,0,0"/>
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -196,11 +203,13 @@
                     <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
                 </Border.Effect>
                 <StackPanel>
-                    <TextBlock Text="Co oferujemy" HorizontalAlignment="Center" FontSize="28" Margin="0,30,0,30"/>
-                    <ItemsControl x:Name="itemsControlBenefity">
-                        <ItemsPanelTemplate>
-                            <StackPanel/>
-                        </ItemsPanelTemplate>
+                    <TextBlock Text="Co oferujemy" HorizontalAlignment="Center" FontWeight="Medium" FontSize="28" Margin="0,30,0,30"/>
+                    <ItemsControl x:Name="itemsControlBenefity" ItemsSource="{Binding}" Margin="0,0,0,30">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border Background="#e6e0f9" Width="700" Height="70" BorderBrush="Transparent" BorderThickness="0" CornerRadius="10" Margin="0,0,0,25">
@@ -210,7 +219,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="Element 1" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" />
+                                        <TextBlock Text="{Binding Content}" Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="21" />
                                     </Grid>
                                 </Border>
                             </DataTemplate>
@@ -237,9 +246,9 @@
                     <TextBlock Text="Więcej o firmie" HorizontalAlignment="Center" FontSize="20" Margin="0,20,0,20"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Image Source="../Imgs/UI/login_user.png" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,0"/>
-                        <TextBlock Text="Garażowa 5, Warszawa" VerticalAlignment="Center" FontSize="15"/>
+                        <TextBlock x:Name="moreAdres" Text="Garażowa 5, Warszawa" VerticalAlignment="Center" FontSize="15"/>
                     </StackPanel>
-                    <TextBlock Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra venenatis ex,dddddddddddddddddd et eleifend elit" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="15" Margin="20,20,20,20"/>
+                    <TextBlock x:Name="moreOpis" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra venenatis ex,dddddddddddddddddd et eleifend elit" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="15" Margin="20,20,20,20"/>
                 </StackPanel>
             </Border>
         </StackPanel>

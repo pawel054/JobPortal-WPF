@@ -57,7 +57,7 @@
         <ItemsControl x:Name="itemsControl" ItemsSource="{Binding}" Grid.Row="3">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0" MaxWidth="1200"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
@@ -66,21 +66,21 @@
                         <Border.Effect>
                             <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
                         </Border.Effect>
-                        <Grid>
+                        <Grid VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="100"/>
-                                <RowDefinition Height="100"/>
-                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Text="{Binding NazwaStanowiska}" FontSize="22" FontWeight="DemiBold" Grid.Column="0" Grid.Row="0" Margin="20,10,0,0"/>
-                            <TextBlock Text="{Binding Company.Name}" FontSize="22" Grid.Column="0" Grid.Row="1" Margin="20,0,0,0"/>
-                            <TextBlock Text="{Binding NazwaStanowiska}" FontSize="22" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center"/>
-                            <TextBlock Text="{Binding Company.Adress}" FontSize="22" Grid.Column="0" Grid.Row="2" Margin="20,0,0,0"/>
-                            <TextBlock Text="{Binding Wynagrodzenie}" FontSize="22" Grid.Column="1" Grid.Row="2"/>
+                            <TextBlock Text="{Binding NazwaStanowiska}" FontSize="22" FontWeight="DemiBold" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="20,10,0,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Company.Name}" FontSize="22" Grid.Column="0" Grid.Row="1" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                            <Image Source="{Binding SciezkaObraz}" Grid.Column="1" Grid.Row="1"  Width="150" Height="150" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Company.Adress}" FontSize="22" Grid.Column="0" Grid.Row="2" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Wynagrodzenie}" FontSize="22" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
                         </Grid>
                     </Border>
                 </DataTemplate>

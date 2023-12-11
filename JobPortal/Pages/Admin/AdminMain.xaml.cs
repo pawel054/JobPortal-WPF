@@ -1,5 +1,4 @@
-﻿using JobPortal.Pages.Admin;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,19 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace JobPortal.AppWindows
+namespace JobPortal.Pages.Admin
 {
     /// <summary>
-    /// Logika interakcji dla klasy AdminWindow.xaml
+    /// Logika interakcji dla klasy AdminMain.xaml
     /// </summary>
-    public partial class AdminWindow : Window
+    public partial class AdminMain : Page
     {
-        public AdminWindow()
+        private Frame mainFrame;
+        public AdminMain(Frame mainFrame)
         {
             InitializeComponent();
-            adminFrame.Content = new AdminMain(adminFrame);
+            this.mainFrame = mainFrame;
         }
     }
 }

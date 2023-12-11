@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JobPortal.AppWindows"
         mc:Ignorable="d"
-        Title="AdminWindow" Height="450" Width="800"
+        Title="AdminWindow" Height="auto" Width="auto"
+        WindowState="Maximized"
         AllowsTransparency="True"
         WindowStyle="None"
         Background="Transparent">
@@ -16,25 +17,64 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Border CornerRadius="37" Background="white" BorderThickness="1" Width="750" Height="400" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Border CornerRadius="37" Background="white" BorderThickness="1" Width="Auto" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="100">
         <Border.Effect>
             <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
         </Border.Effect>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Border Grid.Column="0" Background="#e6e0f9">
                 <Border.CornerRadius>
                     <CornerRadius TopLeft="37" BottomLeft="37"/>
                 </Border.CornerRadius>
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" Width="30" Margin="0,0,0,0"/>
-                    <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" Width="30" Margin="0,10,0,0"/>
-                    <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" Width="30" Margin="0,10,0,0"/>
-                </StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                        <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" Width="50" Margin="0,0,0,0"/>
+                        <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" Width="50" Margin="0,10,0,0"/>
+                        <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" Width="50" Margin="0,10,0,0"/>
+                    </StackPanel>
+                    <Image Grid.Row="3" VerticalAlignment="Bottom" Source="../Imgs/UI/login_user.png" Grid.Column="0" Width="60" Margin="0,0,0,50"/>
+                </Grid>
             </Border>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Background="#400DD0" HorizontalAlignment="Right" Width="60" Height="35" Margin="0,20,20,0" Foreground="White" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="14">
+                    <Button.Content>
+                        <Image Source="../Imgs/UI/Icons/cross.png" Width="15"/>
+                    </Button.Content>
+                </Button>
+                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="50,30,0,0">
+                    <Border CornerRadius="15" Background="#400DD0" BorderThickness="1" Width="65" Height="65">
+                        <Image Source="../Imgs/UI/login_user.png" Grid.Column="0" Width="40" Margin="0,0,0,0"/>
+                    </Border>
+                    <TextBlock Text="Panel główny" VerticalAlignment="Center" FontSize="25" Margin="15,0,0,0" Foreground="Gray"/>
+                </StackPanel>
+                <Button Grid.Row="1" Grid.Column="1" BorderThickness="0" VerticalAlignment="Center" Background="#e6e0f9" HorizontalAlignment="Right" Width="170" Height="35" Margin="0,0,50,0" Foreground="#400DD0" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="14">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Imgs/UI/Icons/cross.png" Width="15" Margin="0,0,10,0"/>
+                            <TextBlock Text="Widok strony" FontWeight="Medium"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Frame x:Name="adminFrame" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="50,25,50,25"/>
+            </Grid>
         </Grid>
     </Border>
 </Window>

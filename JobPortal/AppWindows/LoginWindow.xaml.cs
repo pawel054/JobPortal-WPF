@@ -1,5 +1,6 @@
 ﻿using JobPortal.Class;
 using JobPortal.Database;
+using JobPortal.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,10 +25,25 @@ namespace JobPortal
     public partial class LoginWindow : Window
     {
         private Window mainWindow;
+        private Frame mainFrame;
+        private int userID;
+        private string email;
         public LoginWindow(Window mainWindow)
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
+            loginPanel.Visibility = Visibility.Visible;
+            userPanel.Visibility = Visibility.Collapsed;
+        }
+
+        public LoginWindow(Frame mainFrame, int userID, string email)
+        {
+            InitializeComponent();
+            this.mainFrame = mainFrame;
+            this.userID = userID;
+            this.email = email;
+            loginPanel.Visibility = Visibility.Collapsed;
+            userPanel.Visibility = Visibility.Visible;
         }
 
         private void CloseWindowButton(object sender, RoutedEventArgs e)
@@ -121,5 +137,16 @@ namespace JobPortal
             return hashedPassword;
         }
 
+        private void ProfileButton(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Content = new ProfilePage(userID, email);
+            this.Close();
+        }
+
+        private void LogoutButton(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+        }
     }
 }

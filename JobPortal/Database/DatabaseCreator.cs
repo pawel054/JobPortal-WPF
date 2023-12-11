@@ -24,7 +24,7 @@ namespace JobPortal.Database
                     @"CREATE TABLE IF NOT EXISTS firma (firma_id INTEGER PRIMARY KEY AUTOINCREMENT, nazwa TEXT, adres TEXT, informacja TEXT);" +
                     "CREATE TABLE IF NOT EXISTS kategoria (kategoria_id INTEGER PRIMARY KEY AUTOINCREMENT, nazwa TEXT);" +
                     "CREATE TABLE IF NOT EXISTS uzytkownik (user_id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, haslo TEXT, isadmin BOOLEAN);" +
-                    "CREATE TABLE IF NOT EXISTS oferta (oferta_id INTEGER PRIMARY KEY AUTOINCREMENT, firma_id INTEGER, kategoria_id INTEGER, nazwa_stanowiska TEXT, poziom_stanowiska TEXT, rodzaj_umowy TEXT, rodzaj_pracy TEXT, wymiar_zatrudnienia TEXT, wynagrodzenie TEXT, dni_pracy TEXT, godziny_pracy TEXT, data_waznosci DATE, FOREIGN KEY (firma_id) REFERENCES firma(firma_id) ON UPDATE CASCADE ON DELETE CASCADE, FOREIGN KEY (kategoria_id) REFERENCES kategoria(kategoria_id) ON UPDATE CASCADE ON DELETE CASCADE); " +
+                    "CREATE TABLE IF NOT EXISTS oferta (oferta_id INTEGER PRIMARY KEY AUTOINCREMENT, firma_id INTEGER, kategoria_id INTEGER, nazwa_stanowiska TEXT, poziom_stanowiska TEXT, rodzaj_umowy TEXT, rodzaj_pracy TEXT, wymiar_zatrudnienia TEXT, wynagrodzenie TEXT, dni_pracy TEXT, godziny_pracy TEXT, data_waznosci DATE, obraz_src TEXT, FOREIGN KEY (firma_id) REFERENCES firma(firma_id) ON UPDATE CASCADE ON DELETE CASCADE, FOREIGN KEY (kategoria_id) REFERENCES kategoria(kategoria_id) ON UPDATE CASCADE ON DELETE CASCADE); " +
                     "CREATE TABLE IF NOT EXISTS profil (profil_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, imie TEXT, nazwisko TEXT, data_urodzenia DATE, numer_telefonu TEXT, zdjecie_profilowe TEXT, adres_zamieszkania TEXT, aktualne_stanowisko TEXT, aktualne_stanowisko_opis TEXT, podsumowanie_zawodowe TEXT, FOREIGN KEY (user_id) REFERENCES uzytkownik(user_id) ON UPDATE CASCADE ON DELETE CASCADE);" +
                     "CREATE TABLE IF NOT EXISTS uzytkownik_aplikacje (aplikacja_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, oferta_id INTEGER, status TEXT, FOREIGN KEY (oferta_id) REFERENCES oferta(oferta_id) ON UPDATE CASCADE ON DELETE NO ACTION, FOREIGN KEY (user_id) REFERENCES uzytkownik(user_id) ON UPDATE CASCADE ON DELETE NO ACTION);" +
                     "CREATE TABLE IF NOT EXISTS uzytkownik_ulubione (ulubione_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, oferta_id INTEGER, FOREIGN KEY (oferta_id) REFERENCES oferta(oferta_id) ON UPDATE CASCADE ON DELETE NO ACTION, FOREIGN KEY (user_id) REFERENCES uzytkownik(user_id) ON UPDATE CASCADE ON DELETE NO ACTION);" +
@@ -81,7 +81,7 @@ namespace JobPortal.Database
                 db.Open();
                 var insertCommand = new SqliteCommand();
                 insertCommand.Connection = db;
-                insertCommand.CommandText = "SELECT email, haslo, isadmin FROM uzytkownik WHERE email=@Email;";
+                insertCommand.CommandText = "SELECT * FROM uzytkownik WHERE email=@Email;";
                 insertCommand.Parameters.AddWithValue("@Email", user.Email);
                 using (SqliteDataReader reader = insertCommand.ExecuteReader())
                 {
@@ -89,9 +89,10 @@ namespace JobPortal.Database
                     {
                         while (reader.Read())
                         {
-                            string email = reader.GetString(0);
-                            string passwordHash = reader.GetString(1);
-                            bool isadmin = reader.GetBoolean(2);
+                            int userID = reader.GetInt32(0);
+                            string email = reader.GetString(1);
+                            string passwordHash = reader.GetString(2);
+                            bool isadmin = reader.GetBoolean(3);
 
                             if (passwordHash != null && BCrypt.Net.BCrypt.Verify(user.Password, passwordHash))
                             {
@@ -103,7 +104,7 @@ namespace JobPortal.Database
                                 }
                                 else
                                 {
-                                    MainWindow mainWindow = new MainWindow(user.Email);
+                                    MainWindow mainWindow = new MainWindow(userID, email);
                                     mainWindow.Show();
                                     currentWindow.Close();
                                 }

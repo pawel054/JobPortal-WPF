@@ -21,29 +21,39 @@
             <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
         </Border.Effect>
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Button Grid.Row="0" VerticalAlignment="Center" Click="CloseWindowButton" Background="#400DD0" HorizontalAlignment="Right" Width="60" Height="35" Margin="0,0,20,0" Foreground="White" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="14">
-                <Button.Content>
-                    <Image Source="../Imgs/UI/Icons/cross.png" Width="15"/>
-                </Button.Content>
-            </Button>
-            <StackPanel Grid.Row="1">
-                <TextBlock x:Name="windowTitle" Text="Zaloguj się" HorizontalAlignment="Center" FontWeight="Bold" FontSize="35" Margin="0,0,0,30"/>
-                <Image Source="../Imgs/UI/login_user.png" Width="200"/>
-                <TextBox x:Name="txtEmail" Height="40" Width="350" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Adres e-mail" Margin="0,30,0,0"/>
-                <TextBlock x:Name="placeholder_password" Text="Hasło" FontSize="18" Foreground="gray" Padding="20,0,20,0" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1" Margin="0,0,0,-100" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
-                <PasswordBox x:Name="txtPassword" Height="40" Width="350" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource RoundedPasswordBoxStyle}" Tag="Hasło" Margin="0,30,0,30" PasswordChanged="HidePasswordPlaceholder"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" VerticalAlignment="Center" Click="CloseWindowButton" Background="#400DD0" HorizontalAlignment="Right" Width="60" Height="35" Margin="0,0,20,0" Foreground="White" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="14">
+                    <Button.Content>
+                        <Image Source="../Imgs/UI/Icons/cross.png" Width="15"/>
+                    </Button.Content>
+                </Button>
+                <StackPanel x:Name="loginPanel" Grid.Row="1">
+                    <TextBlock x:Name="windowTitle" Text="Zaloguj się" HorizontalAlignment="Center" FontWeight="Bold" FontSize="35" Margin="0,0,0,30"/>
+                    <Image Source="../Imgs/UI/login_user.png" Width="200"/>
+                    <TextBox x:Name="txtEmail" Height="40" Width="350" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Adres e-mail" Margin="0,30,0,0"/>
+                    <TextBlock x:Name="placeholder_password" Text="Hasło" FontSize="18" Foreground="gray" Padding="20,0,20,0" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="1" Margin="0,0,0,-100" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown"/>
+                    <PasswordBox x:Name="txtPassword" Height="40" Width="350" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource RoundedPasswordBoxStyle}" Tag="Hasło" Margin="0,30,0,30" PasswordChanged="HidePasswordPlaceholder"/>
 
-                <Button x:Name="loginBtn" Content="Zaloguj" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="45" Width="200" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="LoginButton"/>
-                <Button x:Name="registerBtn" Content="Utwórz konto" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="45" Width="200" Visibility="Collapsed" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="RegisterButton"/>
-                <TextBlock FontSize="15" HorizontalAlignment="Center" Margin="0,30,0,0">
+                    <Button x:Name="loginBtn" Content="Zaloguj" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="45" Width="200" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="LoginButton"/>
+                    <Button x:Name="registerBtn" Content="Utwórz konto" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="45" Width="200" Visibility="Collapsed" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="RegisterButton"/>
+                    <TextBlock FontSize="15" HorizontalAlignment="Center" Margin="0,30,0,0">
                     <Run x:Name="run1" Text="Nie masz jeszcze konta?"/>
                     <Run x:Name="run2" Text="Utwórz konto" Foreground="#400DD0" FontWeight="DemiBold" MouseLeftButtonDown="CreateAccountButton"/>
-                </TextBlock>
-            </StackPanel>
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel x:Name="userPanel" Grid.Row="1" Visibility="Collapsed">
+                    <TextBlock Text="Moje konto" HorizontalAlignment="Center" FontWeight="Bold" FontSize="35" Margin="0,0,0,30"/>
+                    <Image Source="../Imgs/UI/login_user.png" Width="200"/>
+
+                    <Button Content="Profil użytkownika" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="45" Width="300" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="ProfileButton" Margin="0,40,0,0"/>
+                    <Button Content="Wyloguj" VerticalAlignment="Center" VerticalContentAlignment="Center"  Foreground="#400DD0" Background="Transparent" BorderBrush="#400DD0" BorderThickness="3" FontWeight="DemiBold" FontSize="18" Height="45" Width="300" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="LogoutButton" Margin="0,20,0,0"/>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Border>
 </Window>

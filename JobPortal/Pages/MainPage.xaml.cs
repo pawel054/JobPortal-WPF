@@ -1,4 +1,5 @@
-﻿using JobPortal.Database;
+﻿using JobPortal.Class;
+using JobPortal.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,11 @@ namespace JobPortal.Pages
 
         private void OfferBoxClicked(object sender, MouseButtonEventArgs e)
         {
-            mainFrame.Content = new OfferPage(mainFrame);
+            var test = ((FrameworkElement)sender).DataContext;
+            if(test is Offer offer)
+            {
+                mainFrame.Content = new OfferPage(mainFrame, offer.OfferID);
+            }
         }
 
         private void SearchButton(object sender, RoutedEventArgs e)
