@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace JobPortal.Database
 {
@@ -29,21 +30,21 @@ namespace JobPortal.Database
                     {
                         while (reader.Read())
                         {
-                            int profilID = reader.GetInt32(0);
-                            int userID = reader.GetInt32(1);
-                            string imie = reader.GetString(2);
-                            string nazwisko = reader.GetString(3);
-                            DateTime dataUrodzenia = reader.GetDateTime(4);
-                            string numerTelefonu = reader.GetString(5);
-                            string zdjecieProfilowe = reader.GetString(6);
-                            string adres = reader.GetString(7);
-                            string aktualneStanowisko = reader.GetString(8);
-                            string aktualneStanowiskoOpis = reader.GetString(9);
-                            string podsumowanieZawodowe = reader.GetString(10);
+                                int profilID = reader.GetInt32(0);
+                                int userID = reader.GetInt32(1);
+                                string imie = reader.GetString(2);
+                                string nazwisko = reader.GetString(3);
+                                DateTime dataUrodzenia = reader.GetDateTime(4);
+                                string numerTelefonu = reader.GetString(5);
+                                string zdjecieProfilowe = reader.GetString(6);
+                                string adres = reader.GetString(7);
+                                string aktualneStanowisko = reader.GetString(8);
+                                string aktualneStanowiskoOpis = reader.GetString(9);
+                                string podsumowanieZawodowe = reader.GetString(10);
 
 
-                            Profile readProfile = new Profile(profilID, userID, imie, nazwisko, dataUrodzenia, numerTelefonu, zdjecieProfilowe, adres, aktualneStanowisko, aktualneStanowiskoOpis, podsumowanieZawodowe);
-                            profile.Add(readProfile);
+                                Profile readProfile = new Profile(profilID, userID, imie, nazwisko, dataUrodzenia, numerTelefonu, zdjecieProfilowe, adres, aktualneStanowisko, aktualneStanowiskoOpis, podsumowanieZawodowe);
+                                profile.Add(readProfile);
                         }
                     }
                     else

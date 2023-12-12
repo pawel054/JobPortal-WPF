@@ -31,12 +31,30 @@ namespace JobPortal.Pages
         private void LoadDataFromDatabase(int userID, string email)
         {
             Profile profile = DatabaseProfile.GetProfileByID(userID).FirstOrDefault();
-            profilePicture.Source = new BitmapImage(new Uri(profile.ProfilePictureSrc, UriKind.Absolute));
+            //profilePicture.Source = new BitmapImage(new Uri(profile.ProfilePictureSrc, UriKind.Absolute));
             txtNameSurname.Text = profile.Name + " " + profile.Surname;
-            txtBirthDate.Text = profile.BirthDate.ToString();
             txtEmail.Text = email;
             txtPhoneNumber.Text = profile.PhoneNumber;
             txtAdress.Text = profile.Adress;
+
+            if(profile.BirthDate == new DateTime(1900, 1, 1))
+            {
+                txtBirthDate.Text = "brak informacji";
+            }
+            else
+            {
+                txtBirthDate.Text = profile.BirthDate.ToString();
+            }
+
+            if (profile.BirthDate == new DateTime(1900, 1, 1))
+            {
+                txtBirthDate.Text = "brak informacji";
+            }
+            else
+            {
+                txtBirthDate.Text = profile.BirthDate.ToString();
+            }
+
 
             txtCurrentPosition.Text = profile.WorkPosition;
             txtCurrentPositionDescription.Text = profile.WorkPositionDescription;
