@@ -8,8 +8,12 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminMain">
 
-    <StackPanel>
-        <Border CornerRadius="20" Height="170" Background="#e6e0f9" Margin="0,20,0,0">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.35*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border CornerRadius="20" Grid.Row="0" Background="#e6e0f9" Margin="0,20,0,0">
             <Grid Margin="20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -63,7 +67,7 @@
                 </Border>
             </Grid>
         </Border>
-        <Border CornerRadius="20" Height="470" Background="#e6e0f9" Margin="0,20,0,0">
+        <Border CornerRadius="20" Grid.Row="1" Background="#e6e0f9" Margin="0,30,0,0">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -195,5 +199,5 @@
                 </Border>
             </Grid>
         </Border>
-    </StackPanel>
+    </Grid>
 </Page>

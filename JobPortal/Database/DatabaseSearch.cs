@@ -13,7 +13,7 @@ namespace JobPortal.Database
     {
         readonly private static string dbpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JobPortalDatabase.db");
 
-        public static List<Offer> GetOfferSearch(string name, )
+        public static List<Offer> GetOfferSearch(string name)
         {
             List<Offer> offer = new List<Offer>();
 
@@ -23,7 +23,7 @@ namespace JobPortal.Database
                 var insertCommand = new SqliteCommand();
                 insertCommand.Connection = db;
                 insertCommand.CommandText = "SELECT * FROM oferta INNER JOIN firma USING(firma_id) INNER JOIN kategoria USING(kategoria_id) WHERE oferta_id=@ID";
-                insertCommand.Parameters.AddWithValue("@ID", id);
+                insertCommand.Parameters.AddWithValue("@ID", name);
                 using (SqliteDataReader reader = insertCommand.ExecuteReader())
                 {
                     while (reader.Read())

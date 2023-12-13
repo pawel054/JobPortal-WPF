@@ -36,10 +36,11 @@ namespace JobPortal
             userPanel.Visibility = Visibility.Collapsed;
         }
 
-        public LoginWindow(Frame mainFrame, int userID, string email)
+        public LoginWindow(Frame mainFrame, Window mainWindow, int userID, string email)
         {
             InitializeComponent();
             this.mainFrame = mainFrame;
+            this.mainWindow = mainWindow;
             this.userID = userID;
             this.email = email;
             loginPanel.Visibility = Visibility.Collapsed;
@@ -145,8 +146,9 @@ namespace JobPortal
 
         private void LogoutButton(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+            MainWindow newWindow = new MainWindow();
+            newWindow.Show();
+            mainWindow.Close();
         }
     }
 }

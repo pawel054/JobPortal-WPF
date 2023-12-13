@@ -37,24 +37,14 @@ namespace JobPortal.Pages
             txtPhoneNumber.Text = profile.PhoneNumber;
             txtAdress.Text = profile.Adress;
 
-            if(profile.BirthDate == new DateTime(1900, 1, 1))
-            {
-                txtBirthDate.Text = "brak informacji";
-            }
-            else
-            {
-                txtBirthDate.Text = profile.BirthDate.ToString();
-            }
+            if (profile.Name == "brak informacji") txtNameSurname.Text = profile.Name;
+            else txtNameSurname.Text = profile.Name + " " + profile.Surname;
 
-            if (profile.BirthDate == new DateTime(1900, 1, 1))
-            {
-                txtBirthDate.Text = "brak informacji";
-            }
-            else
-            {
-                txtBirthDate.Text = profile.BirthDate.ToString();
-            }
+            if (profile.BirthDate == new DateTime(1900, 1, 1)) txtBirthDate.Text = "brak informacji";
+            else txtBirthDate.Text = profile.BirthDate.ToString();
 
+            if (profile.BirthDate == new DateTime(1900, 1, 1)) txtBirthDate.Text = "brak informacji";
+            else txtBirthDate.Text = profile.BirthDate.ToString();
 
             txtCurrentPosition.Text = profile.WorkPosition;
             txtCurrentPositionDescription.Text = profile.WorkPositionDescription;

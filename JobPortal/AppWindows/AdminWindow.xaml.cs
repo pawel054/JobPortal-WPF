@@ -25,5 +25,22 @@ namespace JobPortal.AppWindows
             InitializeComponent();
             adminFrame.Content = new AdminMain(adminFrame);
         }
+
+        private void AdminMainClicked(object sender, MouseButtonEventArgs e)
+        {
+            adminFrame.Content = new AdminMain(adminFrame);
+            pageTitle.Text = "Panel główny";
+        }
+
+        private void AdminOfferClicked(object sender, MouseButtonEventArgs e)
+        {
+            adminFrame.Content = new AdminOffer();
+            pageTitle.Text = "Ogłoszenia";
+        }
+
+        private void AdminCompanyClicked(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

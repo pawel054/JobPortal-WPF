@@ -61,7 +61,7 @@ namespace JobPortal
 
         private void AccountButton(object sender, RoutedEventArgs e)
         {
-            LoginWindow loginWindow = new LoginWindow(mainFrame, userId, email);
+            LoginWindow loginWindow = new LoginWindow(mainFrame, this, userId, email);
             loginWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             loginWindow.Owner = Application.Current.MainWindow;
             this.Opacity = 0.5;

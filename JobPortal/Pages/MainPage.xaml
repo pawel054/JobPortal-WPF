@@ -22,15 +22,15 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="260"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel VerticalAlignment="Center" Grid.Column="1" Grid.Row="0">
             <TextBlock Text="21 ofert od najlepszych pracodawców" VerticalAlignment="Center" FontSize="19" Margin="0,20,0,20" HorizontalAlignment="Center"/>
         </StackPanel>
         <TextBlock Text="Wyszukiwarka ofert" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="40" FontWeight="Bold" Margin="0,40,0,40"/>
-        <Grid Grid.Column="1" Grid.Row="2">
-            <Rectangle Fill="White" RadiusX="30" RadiusY="30" Width="1000">
+        <Grid Grid.Column="1" Grid.Row="2" MinHeight="250" Margin="0,0,0,0">
+            <Rectangle Fill="White" RadiusX="30" RadiusY="30" MaxWidth="1000">
                 <Rectangle.Effect>
                     <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
                 </Rectangle.Effect>
@@ -57,7 +57,7 @@
         <ItemsControl x:Name="itemsControl" ItemsSource="{Binding}" Grid.Row="3">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
