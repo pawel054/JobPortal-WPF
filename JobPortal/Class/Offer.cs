@@ -38,5 +38,21 @@ namespace JobPortal.Class
             DataWaznosci = dataWaznosci;
             SciezkaObraz = sciezkaObraz;
         }
+
+        public Offer(Company company, Category category, string nazwaStanowiska, string poziomStanowiska, string rodzajUmowy, string rodzajPracy, string wymiarZatrudnienia, string wynagrodzenie, string dniPracy, string godzinyPracy, DateTime dataWaznosci, string sciezkaObraz)
+        {
+            Company = company;
+            Category = category;
+            NazwaStanowiska = nazwaStanowiska;
+            PoziomStanowiska = poziomStanowiska;
+            RodzajUmowy = rodzajUmowy;
+            RodzajPracy = rodzajPracy;
+            WymiarZatrudnienia = wymiarZatrudnienia;
+            Wynagrodzenie = wynagrodzenie;
+            DniPracy = dniPracy;
+            GodzinyPracy = godzinyPracy;
+            DataWaznosci = dataWaznosci;
+            SciezkaObraz = sciezkaObraz;
+        }
     }
 }

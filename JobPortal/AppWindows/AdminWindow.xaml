@@ -53,7 +53,7 @@
                     </Border>
                     <TextBlock x:Name="pageTitle" Text="Panel główny" VerticalAlignment="Center" FontSize="25" Margin="15,0,0,0" Foreground="Gray"/>
                 </StackPanel>
-                <Button Grid.Row="0" Grid.Column="1" BorderThickness="0" Background="#e6e0f9" HorizontalAlignment="Right" Width="170" Height="35" Margin="0,80,50,0" Foreground="#400DD0" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="14">
+                <Button Grid.Row="0" Grid.Column="1" BorderThickness="0" Background="#e6e0f9" HorizontalAlignment="Right" Width="170" Height="35" Margin="0,80,50,0" Foreground="#400DD0" Click="ViewChangeButton" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="14">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <Image Source="../Imgs/UI/Icons/cross.png" Width="15" Margin="0,0,10,0"/>

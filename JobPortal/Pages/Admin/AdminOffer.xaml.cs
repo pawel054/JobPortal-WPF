@@ -1,4 +1,7 @@
-﻿using System;
+﻿using JobPortal.AppWindows.CustomWindows;
+using JobPortal.Class;
+using JobPortal.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +26,37 @@ namespace JobPortal.Pages.Admin
         public AdminOffer()
         {
             InitializeComponent();
+            itemsControl.DataContext = DatabaseOffer.GetAllOffers();
+        }
+
+        private void BtnDodajClicked(object sender, RoutedEventArgs e)
+        {
+            FormWindow formWindow = new FormWindow();
+            formWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            formWindow.Owner = Application.Current.MainWindow;
+            this.Opacity = 0.5;
+            formWindow.ShowDialog();
+            this.Opacity = 1;
+        }
+
+        private void DeleteButton(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            int offerID = (int)button.CommandParameter;
+            DatabaseAdmin.RemoveOffer(offerID);
+        }
+
+        private void EditButton(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            int offerID = (int)button.CommandParameter;
+
+            FormWindow formWindow = new FormWindow(offerID);
+            formWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            formWindow.Owner = Application.Current.MainWindow;
+            this.Opacity = 0.5;
+            formWindow.ShowDialog();
+            this.Opacity = 1;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using JobPortal.Pages.Admin;
+﻿using JobPortal.Pages;
+using JobPortal.Pages.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,19 @@ namespace JobPortal.AppWindows
     /// </summary>
     public partial class AdminWindow : Window
     {
+        private int userId;
+        private string email;
+
         public AdminWindow()
         {
             InitializeComponent();
+            adminFrame.Content = new AdminMain(adminFrame);
+        }
+        public AdminWindow(int userId, string email)
+        {
+            InitializeComponent();
+            this.userId = userId;
+            this.email = email;
             adminFrame.Content = new AdminMain(adminFrame);
         }
 
@@ -41,6 +52,13 @@ namespace JobPortal.AppWindows
         private void AdminCompanyClicked(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void ViewChangeButton(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow(1, "1", true);
+            mainWindow.Show();
+            this.Close();
         }
     }
 }

@@ -61,6 +61,35 @@
         </Setter>
     </Style>
 
+    <Style x:Key="PlaceholderTextBoxStyle2" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Grid>
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="15"/>
+                        <TextBlock x:Name="PlaceholderText"
+                                   Text="{TemplateBinding Tag}"
+                                   Foreground="Gray"
+                                   Margin="0,0,0,0"
+                                   Visibility="Collapsed"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                   Padding="20,0,20,3"/>
+                        <ScrollViewer x:Name="PART_ContentHost"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="RoundedPasswordBoxStyle" TargetType="{x:Type PasswordBox}">
         <Setter Property="Template">
             <Setter.Value>

@@ -9,17 +9,17 @@ namespace JobPortal.Class
     public class Category
     {
         public int CategoryID { get; set; }
-        public string CategoryName { get; set; }
+        public string Name { get; set; }
 
-        public Category(int CategoryID, string CategoryName)
+        public Category(int CategoryID, string Name)
         {
             this.CategoryID = CategoryID;
-            this.CategoryName = CategoryName;
+            this.Name = Name;
         }
 
         public Category(string CategoryName)
         {
-            this.CategoryName = CategoryName;
+            this.Name = Name;
         }
     }
 

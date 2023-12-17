@@ -51,7 +51,7 @@ namespace JobPortal.Database
                 var insertCommand = new SqliteCommand();
                 insertCommand.Connection = db;
                 insertCommand.CommandText = "INSERT INTO kategoria VALUES(NULL, @Name);";
-                insertCommand.Parameters.AddWithValue("@Name", category.CategoryName);
+                insertCommand.Parameters.AddWithValue("@Name", category.Name);
                 insertCommand.ExecuteReader();
             }
         }
@@ -98,13 +98,13 @@ namespace JobPortal.Database
                             {
                                 if (isadmin)
                                 {
-                                    AdminWindow adminWindow = new AdminWindow();
+                                    AdminWindow adminWindow = new AdminWindow(userID, email);
                                     adminWindow.Show();
                                     currentWindow.Close();
                                 }
                                 else
                                 {
-                                    MainWindow mainWindow = new MainWindow(userID, email);
+                                    MainWindow mainWindow = new MainWindow(userID, email, false);
                                     mainWindow.Show();
                                     currentWindow.Close();
                                 }

@@ -37,6 +37,7 @@ namespace JobPortal.Pages
             Offer offer = DatabaseOffer.GetOfferByID(offerId).FirstOrDefault();
             txtStanowisko.Content = offer.NazwaStanowiska;
             txtFirma.Content = offer.Company.Name;
+            offerImg.Source = new BitmapImage(new Uri(offer.SciezkaObraz, UriKind.RelativeOrAbsolute));
 
             detailPoziom.Text = offer.PoziomStanowiska;
             detailUmowa.Text = offer.RodzajUmowy;
@@ -54,5 +55,7 @@ namespace JobPortal.Pages
             itemsControlWymagania.DataContext = DatabaseOffer.GetOfferRequirementsByID(offerId);
             itemsControlBenefity.DataContext = DatabaseOffer.GetOfferBenefitsByID(offerId);
         }
+
+
     }
 }

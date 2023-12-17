@@ -25,6 +25,7 @@ namespace JobPortal
     {
         private int userId;
         private string email;
+        private bool isAdmin;
         public MainWindow()
         {
             InitializeComponent();
@@ -34,7 +35,7 @@ namespace JobPortal
             btnKonto.Visibility = Visibility.Collapsed;
         }
 
-        public MainWindow(int userId, string email)
+        public MainWindow(int userId, string email, bool isAdmin)
         {
             InitializeComponent();
             btnZaloguj.Visibility = Visibility.Collapsed;
@@ -42,6 +43,7 @@ namespace JobPortal
             mainFrame.Content = new MainPage(mainFrame);
             this.email = email;
             this.userId = userId;
+            this.isAdmin = isAdmin;
         }
 
         private void TestLogin(object sender, RoutedEventArgs e)
