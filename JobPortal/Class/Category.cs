@@ -17,7 +17,7 @@ namespace JobPortal.Class
             this.Name = Name;
         }
 
-        public Category(string CategoryName)
+        public Category(string Name)
         {
             this.Name = Name;
         }

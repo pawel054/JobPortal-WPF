@@ -3,6 +3,7 @@ using JobPortal.Database;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,8 @@ namespace JobPortal.AppWindows.CustomWindows
     {
         private string selectedFilePath = null;
         private int offerID;
+        private int categoryID;
+        private int companyID;
         public FormWindow()
         {
             InitializeComponent();
@@ -57,15 +60,70 @@ namespace JobPortal.AppWindows.CustomWindows
             txtWorkingDays.Text = offer.DniPracy;
             txtWorkingHours.Text = offer.GodzinyPracy;
             datePicker.Text = offer.DataWaznosci.ToString();
-            cmbPositionLevel.SelectedValue = offer.PoziomStanowiska;
-            cmbContract.SelectedItem = offer.RodzajUmowy;
-            cmbEtat.SelectedItem = offer.WymiarZatrudnienia;
-            cmbWorkingType.SelectedItem = offer.RodzajPracy;
-            cmbCategory.SelectedItem = offer.Category;
-            cmbCompany.SelectedItem = offer.Company;
+            btnFile.Content = offer.SciezkaObraz;
+            SetComboboxSelectedItem(cmbPositionLevel, offer.PoziomStanowiska);
+            SetComboboxSelectedItem(cmbContract, offer.RodzajUmowy);
+            SetComboboxSelectedItem(cmbEtat, offer.WymiarZatrudnienia);
+            SetComboboxSelectedItem(cmbWorkingType, offer.RodzajPracy);
+            SetComboboxSelectedItem(cmbCategory, offer.Category.Name);
+            SetComboboxSelectedItem(cmbCompany, offer.Company.Name);
 
             btnAdd.Visibility = Visibility.Collapsed;
             btnEdit.Visibility = Visibility.Visible;
+        }
+
+        public FormWindow(bool isCategory)
+        {
+            InitializeComponent();
+            if (isCategory)
+            {
+                windowTitle.Text = "Dodaj kategorię";
+                borderWindow.Height = 350;
+                btnAdd.Visibility = Visibility.Collapsed;
+                btnAddCategory.Visibility = Visibility.Visible;
+                offerPanel.Visibility = Visibility.Collapsed;
+                categoryPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                windowTitle.Text = "Dodaj firmę";
+                borderWindow.Height = 590;
+                btnAdd.Visibility = Visibility.Collapsed;
+                btnAddCompany.Visibility = Visibility.Visible;
+                offerPanel.Visibility = Visibility.Collapsed;
+                companyPanel.Visibility = Visibility.Visible;
+            }
+        }
+
+        public FormWindow(bool isCategory, int id)
+        {
+            InitializeComponent();
+            if (isCategory)
+            {
+                categoryID = id;
+                windowTitle.Text = "Edytuj kategorię";
+                Category category = DatabaseAdmin.GetCategoryByID(categoryID).FirstOrDefault();
+                borderWindow.Height = 350;
+                txtCategoryName.Text = category.Name;
+                btnAdd.Visibility = Visibility.Collapsed;
+                btnEditCategory.Visibility = Visibility.Visible;
+                offerPanel.Visibility = Visibility.Collapsed;
+                categoryPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                companyID = id;
+                windowTitle.Text = "Edytuj firmę";
+                Company company = DatabaseAdmin.GetCompanyByID(companyID).FirstOrDefault();
+                borderWindow.Height = 590;
+                txtCompanyName.Text = company.Name;
+                txtCompanyAdress.Text = company.Adress;
+                txtCompanyInfo.Text = company.Description;
+                btnAdd.Visibility = Visibility.Collapsed;
+                btnEditCompany.Visibility = Visibility.Visible;
+                offerPanel.Visibility = Visibility.Collapsed;
+                companyPanel.Visibility = Visibility.Visible;
+            }
         }
 
         private void CloseWindowButton(object sender, RoutedEventArgs e)
@@ -97,7 +155,7 @@ namespace JobPortal.AppWindows.CustomWindows
         {
             if (IsValid())
             {
-                string ImagePath = CreateFilePath();
+                string ImagePath = CreateFilePath(true);
                 var SelectedItemCategory = cmbCategory.SelectedItem as Category;
                 var SelectedItemCompany = cmbCompany.SelectedItem as Company;
                 DatabaseAdmin.InsertOffer(new Offer(SelectedItemCompany, SelectedItemCategory, txtPosition.Text, cmbPositionLevel.Text, cmbContract.Text, cmbWorkingType.Text, cmbEtat.Text, txtSalary.Text, txtWorkingDays.Text, txtWorkingHours.Text, DateTime.Parse(datePicker.Text), ImagePath));
@@ -113,13 +171,24 @@ namespace JobPortal.AppWindows.CustomWindows
         {
             if (IsValid())
             {
-                if(CreateFilePath() != "0")
+                if(selectedFilePath != null)
                 {
-                    string ImagePath = CreateFilePath();
+                    string destinationFolderPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\Imgs\\Upload"));
+                    string fileName = "offerImg_" + Guid.NewGuid().ToString();
+                    string fileExtension = System.IO.Path.GetExtension(selectedFilePath);
+                    string fileNameWithExtention = fileName + fileExtension;
+                    string destinationFilePath = System.IO.Path.Combine(destinationFolderPath, fileNameWithExtention);
+
                     var SelectedItemCategory = cmbCategory.SelectedItem as Category;
                     var SelectedItemCompany = cmbCompany.SelectedItem as Company;
-                    DatabaseAdmin.UpdateOffer(new Offer(offerID, SelectedItemCompany, SelectedItemCategory, txtPosition.Text, cmbPositionLevel.Text, cmbContract.Text, cmbWorkingType.Text, cmbEtat.Text, txtSalary.Text, txtWorkingDays.Text, txtWorkingHours.Text, DateTime.Parse(datePicker.Text), ImagePath));
-                    System.IO.File.Copy(selectedFilePath, ImagePath, true);
+                    DatabaseAdmin.UpdateOffer(new Offer(offerID, SelectedItemCompany, SelectedItemCategory, txtPosition.Text, cmbPositionLevel.Text, cmbContract.Text, cmbWorkingType.Text, cmbEtat.Text, txtSalary.Text, txtWorkingDays.Text, txtWorkingHours.Text, DateTime.Parse(datePicker.Text), fileNameWithExtention), true);
+                    System.IO.File.Copy(selectedFilePath, destinationFilePath, true);
+                }
+                else
+                {
+                    var SelectedItemCategory = cmbCategory.SelectedItem as Category;
+                    var SelectedItemCompany = cmbCompany.SelectedItem as Company;
+                    DatabaseAdmin.UpdateOffer(new Offer(offerID, SelectedItemCompany, SelectedItemCategory, txtPosition.Text, cmbPositionLevel.Text, cmbContract.Text, cmbWorkingType.Text, cmbEtat.Text, txtSalary.Text, txtWorkingDays.Text, txtWorkingHours.Text, DateTime.Parse(datePicker.Text)), false);
                 }
             }
         }
@@ -140,18 +209,118 @@ namespace JobPortal.AppWindows.CustomWindows
             return isOk;
         }
 
-        private string CreateFilePath()
+        private string CreateFilePath(bool returnPath)
         {
             if(selectedFilePath != null)
             {
                 string destinationFolderPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\Imgs\\Upload"));
-                string fileName = "offerImg_" + DatabaseAdmin.GetLatesOfferId();
+                string fileName = "offerImg_" + Guid.NewGuid().ToString();
                 string fileExtension = System.IO.Path.GetExtension(selectedFilePath);
                 string destinationFilePath = System.IO.Path.Combine(destinationFolderPath, fileName + fileExtension);
 
-                return destinationFilePath;
+                if (returnPath)
+                    return destinationFilePath;
+                else
+                    return fileName + fileExtension;
             }
             return "0";
+        }
+
+        private void SetComboboxSelectedItem(ComboBox comboBox, string value)
+        {
+            foreach (var item in comboBox.Items)
+            {
+                if (item is ComboBoxItem comboBoxItem && comboBoxItem.Content.ToString() == value)
+                {
+                    comboBox.SelectedItem = comboBoxItem;
+                    break;
+                }
+                else if (item is Category category && category.Name == value)
+                {
+                    comboBox.SelectedItem = category;
+                    break;
+                }
+                else if (item is Company company && company.Name == value)
+                {
+                    comboBox.SelectedItem = company;
+                    break;
+                }
+            }
+        }
+
+        private void AddButtonCategory(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCategoryName.Text))
+            {
+                DatabaseAdmin.InsertCategory(new Category(txtCategoryName.Text));
+            }
+        }
+        private void EditButtonCategory(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCategoryName.Text))
+            {
+                DatabaseAdmin.UpdateCategory(new Category(categoryID, txtCategoryName.Text));
+            }
+        }
+
+        private void AddButtonCompany(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCompanyName.Text) && !string.IsNullOrEmpty(txtCompanyAdress.Text) && !string.IsNullOrEmpty(txtCompanyInfo.Text))
+            {
+                DatabaseAdmin.InsertCompany(new Company(txtCompanyName.Text, txtCompanyAdress.Text, txtCompanyInfo.Text));
+            }
+        }
+
+        private void EditButtonCompany(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtCompanyName.Text) && !string.IsNullOrEmpty(txtCompanyAdress.Text) && !string.IsNullOrEmpty(txtCompanyInfo.Text))
+            {
+                DatabaseAdmin.UpdateCompany(new Company(companyID, txtCompanyName.Text, txtCompanyAdress.Text, txtCompanyInfo.Text));
+            }
+        }
+
+        private void AddDutiesBtn(object sender, RoutedEventArgs e)
+        {
+            offerDetailsListBox.Items.Add(new TextBox { Height = 40, Width = 350, FontSize = 18, HorizontalContentAlignment = HorizontalAlignment.Center, VerticalContentAlignment = VerticalAlignment.Center, Style = (Style)this.FindResource("PlaceholderTextBoxStyle"), Tag = "Obowiązek" });
+        }
+
+
+        private void AddOfferDetails(int ID)
+        {
+            foreach (var item in offerDetailsListBox.Items)
+            {
+                if (item is TextBox textBox)
+                {
+                    if(!string.IsNullOrEmpty(textBox.Text))
+                    DatabaseAdmin.InsertOfferTables("oferta_obowiazki", textBox.Text, ID);
+                }
+            }
+            foreach (var item in offerDetailsListBox2.Items)
+            {
+                if (item is TextBox textBox)
+                {
+                    if (!string.IsNullOrEmpty(textBox.Text))
+                        DatabaseAdmin.InsertOfferTables("oferta_wymagania", textBox.Text, ID);
+                }
+            }
+            foreach (var item in offerDetailsListBox3.Items)
+            {
+                if (item is TextBox textBox)
+                {
+                    if (!string.IsNullOrEmpty(textBox.Text))
+                        DatabaseAdmin.InsertOfferTables("oferta_benefity", textBox.Text, ID);
+                }
+            }
+        }
+
+        private void AddRequiremenmtsBtn(object sender, RoutedEventArgs e)
+        {
+            offerDetailsListBox2.Items.Add(new TextBox { Height = 40, Width = 350, FontSize = 18, HorizontalContentAlignment = HorizontalAlignment.Center, VerticalContentAlignment = VerticalAlignment.Center, Style = (Style)this.FindResource("PlaceholderTextBoxStyle"), Tag = "Wymóg" });
+        }
+
+        private void AddBenefitsBtn(object sender, RoutedEventArgs e)
+        {
+            offerDetailsListBox3.Items.Add(new TextBox { Height = 40, Width = 350, FontSize = 18, HorizontalContentAlignment = HorizontalAlignment.Center, VerticalContentAlignment = VerticalAlignment.Center, Style = (Style)this.FindResource("PlaceholderTextBoxStyle"), Tag = "Benefit" });
         }
     }
 }

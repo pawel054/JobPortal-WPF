@@ -34,5 +34,32 @@ namespace JobPortal.Class
             WorkPositionDescription = workPositionDescription;
             CareerSummary = careerSummary;
         }
+
+        public Profile(int profileID, string name, string surname, DateTime birthDate, string phoneNumber, string profilePictureSrc, string adress, string workPosition, string workPositionDescription, string careerSummary)
+        {
+            ProfileID = profileID;
+            Name = name;
+            Surname = surname;
+            BirthDate = birthDate;
+            PhoneNumber = phoneNumber;
+            ProfilePictureSrc = profilePictureSrc;
+            Adress = adress;
+            WorkPosition = workPosition;
+            WorkPositionDescription = workPositionDescription;
+            CareerSummary = careerSummary;
+        }
+
+        public Profile( string name, string surname, DateTime birthDate, string phoneNumber, string profilePictureSrc, string adress, string workPosition, string workPositionDescription, string careerSummary)
+        {
+            Name = name;
+            Surname = surname;
+            BirthDate = birthDate;
+            PhoneNumber = phoneNumber;
+            ProfilePictureSrc = profilePictureSrc;
+            Adress = adress;
+            WorkPosition = workPosition;
+            WorkPositionDescription = workPositionDescription;
+            CareerSummary = careerSummary;
+        }
     }
 }

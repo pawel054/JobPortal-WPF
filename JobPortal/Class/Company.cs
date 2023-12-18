@@ -20,5 +20,12 @@ namespace JobPortal.Class
             Adress = adress;
             Description = description;
         }
+
+        public Company(string name, string adress, string description)
+        {
+            Name = name;
+            Adress = adress;
+            Description = description;
+        }
     }
 }

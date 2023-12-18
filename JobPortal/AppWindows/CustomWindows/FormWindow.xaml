@@ -17,7 +17,7 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <Border CornerRadius="37" Background="white" BorderThickness="1" Width="600" Height="750" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
+    <Border x:Name="borderWindow" CornerRadius="37" Background="white" BorderThickness="1" Width="600" Height="750" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
         <Border.Effect>
             <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
         </Border.Effect>
@@ -34,7 +34,7 @@
                     </Button.Content>
                 </Button>
                 <TextBlock x:Name="windowTitle" Grid.Row="1" Text="Dodaj ofertę" HorizontalAlignment="Center" FontWeight="Bold" FontSize="35" Margin="0,0,0,0"/>
-                <ScrollViewer x:Name="offerAddPanel" Grid.Row="1" Margin="0,60,0,40">
+                <ScrollViewer x:Name="offerPanel" Grid.Row="1" Margin="0,60,0,40">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
@@ -119,12 +119,58 @@
 
                         <TextBlock Text="Kategoria" Grid.Row="10" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Foreground="gray" Margin="0,8,0,0" Panel.ZIndex="1"/>
                         <ComboBox x:Name="cmbCategory" Grid.Row="10" Grid.Column="0" Height="50" Width="350" VerticalContentAlignment="Bottom" VerticalAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Padding="15,0,0,4" Margin="0,30,0,0"/>
-
-                        <Button x:Name="btnFile" Grid.Row="11" Content="Wybierz obraz" Width="350" Height="50" BorderBrush="#400DD0" Background="Transparent" Foreground="#400DD0" FontSize="16" Click="SelectFileButton" Style="{StaticResource RoundedButtonStyle}" Tag="20" Margin="0,30,0,0"/>
+                        <StackPanel Grid.Row="11">
+                            <Label Content="Zakres obowiązków" HorizontalAlignment="Center" FontSize="25" Margin="0,20,0,20"/>
+                            <Button Content="Dodaj nowy" Style="{StaticResource RoundedButtonStyle}" Tag="15" Width="100" Height="40" Foreground="white" Background="#400DD0" Click="AddDutiesBtn"/>
+                            <ListView x:Name="offerDetailsListBox" Width="365" Height="auto" Margin="0,10,0,0"  BorderThickness="0" HorizontalContentAlignment="Center"/>
+                            <Button Content="Zapisz do Bazy Danych"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="12">
+                            <Label Content="Wymagania" HorizontalAlignment="Center" FontSize="25" Margin="0,20,0,20"/>
+                            <Button Content="Dodaj nowy" Style="{StaticResource RoundedButtonStyle}" Tag="15" Width="100" Height="40" Foreground="white" Background="#400DD0" Click="AddRequiremenmtsBtn"/>
+                            <ListView x:Name="offerDetailsListBox2" Width="365" Height="auto" Margin="0,10,0,0"  BorderThickness="0" HorizontalContentAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="13">
+                            <Label Content="Benefity" HorizontalAlignment="Center" FontSize="25" Margin="0,20,0,20"/>
+                            <Button Content="Dodaj nowy" Style="{StaticResource RoundedButtonStyle}" Tag="15" Width="100" Height="40" Foreground="white" Background="#400DD0" Click="AddBenefitsBtn"/>
+                            <ListView x:Name="offerDetailsListBox3" Width="365" Height="auto" Margin="0,10,0,0"  BorderThickness="0" HorizontalContentAlignment="Center"/>
+                        </StackPanel>
+                        <Button x:Name="btnFile" Grid.Row="14" Content="Wybierz obraz" Width="350" Height="50" BorderBrush="#400DD0" Background="Transparent" Foreground="#400DD0" FontSize="16" Click="SelectFileButton" Style="{StaticResource RoundedButtonStyle}" Tag="20" Margin="0,30,0,0"/>
                     </Grid>
                 </ScrollViewer>
+                <StackPanel x:Name="categoryPanel" Grid.Row="1" Margin="0,60,0,40" Visibility="Collapsed">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Kategoria" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Foreground="gray" Margin="0,8,0,0" Panel.ZIndex="1"/>
+                        <TextBox x:Name="txtCategoryName" Grid.Row="0" Grid.Column="0" Height="55" Width="350" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle2}" Tag="Kategoria" Padding="0,0,0,5" Margin="0,30,0,0"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel x:Name="companyPanel" Grid.Row="1" Margin="0,60,0,40" Visibility="Collapsed">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Nazwa" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Foreground="gray" Margin="0,8,0,0" Panel.ZIndex="1"/>
+                        <TextBox x:Name="txtCompanyName" Grid.Row="0" Grid.Column="0" Height="55" Width="350" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle2}" Tag="Nazwa" Padding="0,0,0,5" Margin="0,30,0,0"/>
+                        <TextBlock Text="Adres" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Foreground="gray" Margin="0,8,0,0" Panel.ZIndex="1"/>
+                        <TextBox x:Name="txtCompanyAdress" Grid.Row="1" Grid.Column="0" Height="55" Width="350" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle2}" Tag="Adres" Padding="0,0,0,5" Margin="0,30,0,0"/>
+                        <TextBlock Text="Opis" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="15" Foreground="gray" Margin="0,0,0,21" Panel.ZIndex="1"/>
+                        <TextBox x:Name="txtCompanyInfo" Grid.Row="2" Grid.Column="0" Height="120" Width="350" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle2}" Tag="Opis" Padding="0,0,0,5" Margin="0,30,0,0"/>
+                    </Grid>
+                </StackPanel>
                 <Button x:Name="btnAdd" Grid.Row="2" Content="Dodaj" HorizontalAlignment="Center" Width="200" Height="50" Background="#400DD0" Foreground="White" FontSize="18" Click="AddButton" Style="{StaticResource RoundedButtonStyle}" Tag="20" Margin="0,0,0,40"/>
                 <Button x:Name="btnEdit" Grid.Row="2" Content="Edytuj" Visibility="Collapsed" HorizontalAlignment="Center" Width="200" Height="50" Background="#400DD0" Foreground="White" FontSize="18" Click="EditButton" Style="{StaticResource RoundedButtonStyle}" Tag="20" Margin="0,0,0,40"/>
+                
+                <Button x:Name="btnAddCategory" Grid.Row="2" Content="Dodaj" HorizontalAlignment="Center" Visibility="Collapsed" Width="200" Height="50" Background="#400DD0" Foreground="White" FontSize="18" Click="AddButtonCategory" Style="{StaticResource RoundedButtonStyle}" Tag="20" Margin="0,0,0,40"/>
+                <Button x:Name="btnEditCategory" Grid.Row="2" Content="Edytuj" Visibility="Collapsed" HorizontalAlignment="Center" Width="200" Height="50" Background="#400DD0" Foreground="White" FontSize="18" Click="EditButtonCategory" Style="{StaticResource RoundedButtonStyle}" Tag="20" Margin="0,0,0,40"/>
+                
+                <Button x:Name="btnAddCompany" Grid.Row="2" Content="Dodaj" Visibility="Collapsed" HorizontalAlignment="Center" Width="200" Height="50" Background="#400DD0" Foreground="White" FontSize="18" Click="AddButtonCompany" Style="{StaticResource RoundedButtonStyle}" Tag="20" Margin="0,0,0,40"/>
+                <Button x:Name="btnEditCompany" Grid.Row="2" Content="Edytuj" Visibility="Collapsed" HorizontalAlignment="Center" Width="200" Height="50" Background="#400DD0" Foreground="White" FontSize="18" Click="EditButtonCompany" Style="{StaticResource RoundedButtonStyle}" Tag="20" Margin="0,0,0,40"/>
             </Grid>
         </Grid>
     </Border>

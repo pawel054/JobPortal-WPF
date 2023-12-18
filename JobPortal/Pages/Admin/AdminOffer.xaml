@@ -16,7 +16,7 @@
     </Page.Resources>
 
     <Grid>
-        <Border Background="#e6e0f9" CornerRadius="20">
+        <Border x:Name="offerView" Background="#e6e0f9" CornerRadius="20">
             <Grid Margin="80,0,80,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -63,9 +63,101 @@
                                     <TextBlock Text="{Binding OfferID}" Grid.Column="1" FontSize="23" VerticalAlignment="Center" Height="30" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="5,0,40,0" RenderOptions.BitmapScalingMode="HighQuality"/>
                                     <TextBlock Text="{Binding Company.Name}" Grid.Column="2" FontSize="23" VerticalAlignment="Center" Height="30" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="9,0,40,0"/>
                                     <TextBlock Text="{Binding NazwaStanowiska}" Grid.Column="3" FontSize="23" VerticalAlignment="Center" Height="30" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="15,0,40,0"/>
-                                    <TextBlock Text="{Binding Category.CategoryName}" Grid.Column="4" FontSize="23" VerticalAlignment="Center" Height="30" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="21,0,40,0"/>
+                                    <TextBlock Text="{Binding Category.Name}" Grid.Column="4" FontSize="23" VerticalAlignment="Center" Height="30" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="21,0,40,0"/>
                                     <Button Grid.Column="5" Content="Edytuj" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="17" Height="45" Width="150" Style="{StaticResource RoundedButtonStyle}" Tag="15" Click="EditButton" CommandParameter="{Binding OfferID}"/>
                                     <Button Grid.Column="6" Content="Usuń" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="17" Height="45" Width="150" Style="{StaticResource RoundedButtonStyle}" Tag="15" Click="DeleteButton" CommandParameter="{Binding OfferID}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+
+        <Border x:Name="CategoryView" Background="#e6e0f9" CornerRadius="20" Visibility="Collapsed">
+            <Grid Margin="80,0,80,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="categroyBtn" Grid.Row="0" Content="Dodaj" Click="BtnDodajClickedCategory" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="0,60,0,60" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="55" Width="150" Style="{StaticResource RoundedButtonStyle}" Tag="20"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.6*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="ID" Grid.Column="0" FontSize="28" FontWeight="Medium"/>
+                    <Label Content="Nazwa" Grid.Column="1" FontSize="28" FontWeight="Medium"/>
+                </Grid>
+                <ScrollViewer Grid.Row="2" Margin="0,0,0,60">
+                    <ItemsControl x:Name="itemsControlCategory" ItemsSource="{Binding .}" Margin="0,30,0,0">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,0,0,50">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.6*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding CategoryID}" Grid.Column="0" FontSize="33" VerticalAlignment="Center" Height="50" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="5,0,40,0"/>
+                                    <TextBlock Text="{Binding Name}" Grid.Column="1" FontSize="33" VerticalAlignment="Center" Height="50" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="5,0,40,0"/>
+                                    <Button Grid.Column="2" Content="Edytuj" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="17" Height="45" Width="150" Style="{StaticResource RoundedButtonStyle}" Tag="15" Click="EditButtonCategory" CommandParameter="{Binding CategoryID}"/>
+                                    <Button Grid.Column="3" Content="Usuń" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="17" Height="45" Width="150" Style="{StaticResource RoundedButtonStyle}" Tag="15" Click="DeleteButtonCategory" CommandParameter="{Binding CategoryID}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+
+        <Border x:Name="CompanyView" Background="#e6e0f9" CornerRadius="20" Visibility="Collapsed">
+            <Grid Margin="80,0,80,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Content="Dodaj" Click="BtnDodajClickedCompany" HorizontalAlignment="Left" VerticalContentAlignment="Center" Margin="0,60,0,60" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="55" Width="150" Style="{StaticResource RoundedButtonStyle}" Tag="20"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.6*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="ID" Grid.Column="0" FontSize="28" FontWeight="Medium"/>
+                    <Label Content="Nazwa" Grid.Column="1" FontSize="28" FontWeight="Medium"/>
+                </Grid>
+                <ScrollViewer Grid.Row="2" Margin="0,0,0,60">
+                    <ItemsControl x:Name="itemsControlCompany" ItemsSource="{Binding .}" Margin="0,30,0,0">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,0,0,50">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.6*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding CompanyID}" Grid.Column="0" FontSize="33" VerticalAlignment="Center" Height="50" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="5,0,40,0"/>
+                                    <TextBlock Text="{Binding Name}" Grid.Column="1" FontSize="33" VerticalAlignment="Center" Height="50" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="5,0,40,0"/>
+                                    <Button Grid.Column="2" Content="Edytuj" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="20,0,0,0" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="17" Height="45" Width="150" Style="{StaticResource RoundedButtonStyle}" Tag="15" Click="EditButtonCompany" CommandParameter="{Binding CompanyID}"/>
+                                    <Button Grid.Column="3" Content="Usuń" VerticalContentAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,0" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="17" Height="45" Width="150" Style="{StaticResource RoundedButtonStyle}" Tag="15" Click="DeleteButtonCompany" CommandParameter="{Binding CompanyID}"/>
                                 </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>

@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JobPortal.Pages
 {
@@ -22,9 +23,14 @@ namespace JobPortal.Pages
     /// </summary>
     public partial class ProfilePage : Page
     {
+        private int userID;
+        private string email;
+        private int profileID;
         public ProfilePage(int userID, string email)
         {
             InitializeComponent();
+            this.userID = userID;
+            this.email = email;
             LoadDataFromDatabase(userID, email);
         }
 
@@ -49,6 +55,51 @@ namespace JobPortal.Pages
             txtCurrentPosition.Text = profile.WorkPosition;
             txtCurrentPositionDescription.Text = profile.WorkPositionDescription;
             txtSummary.Text = profile.CareerSummary;
+        }
+
+        private void LoadDataFromDatabaseEdit(int userID, string email)
+        {
+            Profile profile = DatabaseProfile.GetProfileByID(userID).FirstOrDefault();
+            //profilePicture.Source = new BitmapImage(new Uri(profile.ProfilePictureSrc, UriKind.Absolute));
+            txtNameSurnameEdit.Text = profile.Name + " " + profile.Surname;
+            txtEmailEdit.Text = email;
+            txtPhoneNumberEdit.Text = profile.PhoneNumber;
+            txtAdressEdit.Text = profile.Adress;
+
+            if (profile.Name == "brak informacji") txtNameSurnameEdit.Text = profile.Name;
+            else txtNameSurnameEdit.Text = profile.Name + " " + profile.Surname;
+
+            if (profile.BirthDate == new DateTime(1900, 1, 1)) txtBirthDateEdit.Text = "brak informacji";
+            else txtBirthDateEdit.Text = profile.BirthDate.ToString();
+
+            txtCurrentPositionEdit.Text = profile.WorkPosition;
+            txtCurrentPositionDescriptionEdit.Text = profile.WorkPositionDescription;
+            txtSummaryEdit.Text = profile.CareerSummary;
+            profileID = profile.ProfileID;
+        }
+
+        private void InfoSaveButton(object sender, RoutedEventArgs e)
+        {
+            string date = null;
+            string inputText = txtNameSurnameEdit.Text;
+            string[] parts = inputText.Split(' ');
+            string firstName = parts[0];
+            string lastName = string.Join(" ", parts.Skip(1));
+
+
+            if (txtBirthDateEdit.Text == "brak informacji") date = new DateTime(1900, 1, 1).ToString();
+
+            DatabaseProfile.UpdateProfile(new Profile(profileID, firstName, lastName, DateTime.Parse(date), txtPhoneNumberEdit.Text, profilePictureEdit.Source.ToString(), txtAdressEdit.Text, txtCurrentPositionEdit.Text, txtCurrentPositionDescriptionEdit.Text, txtSummaryEdit.Text));
+            gridInfo.Visibility = Visibility.Visible;
+            gridInfo_Edit.Visibility = Visibility.Collapsed;
+            LoadDataFromDatabase(userID, email);
+        }
+
+        private void EditInfoButton(object sender, RoutedEventArgs e)
+        {
+            LoadDataFromDatabaseEdit(userID, email);
+            gridInfo.Visibility = Visibility.Collapsed;
+            gridInfo_Edit.Visibility = Visibility.Visible;
         }
     }
 }

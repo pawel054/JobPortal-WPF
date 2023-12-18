@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobPortal.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,10 +22,18 @@ namespace JobPortal.Pages
     public partial class SearchPage : Page
     {
         private Frame mainFrame;
-        public SearchPage(Frame mainFrame)
+        public SearchPage(Frame mainFrame, string positionName, string companyName, string categoryName)
         {
             InitializeComponent();
             this.mainFrame = mainFrame;
+            itemsControlOffer.DataContext = DatabaseOffer.GetOfferBySearch(positionName, companyName, categoryName);
+        }
+
+        private void OfferClicked(object sender, MouseButtonEventArgs e)
+        {
+            var button = (Border)sender;
+            int offerID = (int)button.Tag;
+            mainFrame.Content = new OfferPage(mainFrame, offerID);
         }
     }
 }

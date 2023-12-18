@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JobPortal.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,10 @@ namespace JobPortal.Pages.Admin
         {
             InitializeComponent();
             this.mainFrame = mainFrame;
+            txtCountOffers.Text = DatabaseAdmin.GetCountOfRecords("oferta").ToString();
+            txtCountCompanies.Text = DatabaseAdmin.GetCountOfRecords("firma").ToString();
+            txtCountUsers.Text = DatabaseAdmin.GetCountOfRecords("uzytkownik").ToString();
+            txtCountAplications.Text = DatabaseAdmin.GetCountOfRecords("uzytkownik_aplikacje").ToString();
         }
     }
 }

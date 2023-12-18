@@ -49,16 +49,23 @@ namespace JobPortal.AppWindows
             pageTitle.Text = "Ogłoszenia";
         }
 
-        private void AdminCompanyClicked(object sender, MouseButtonEventArgs e)
+        private void AdminCategoryClicked(object sender, MouseButtonEventArgs e)
         {
-
+            adminFrame.Content = new AdminOffer(true);
+            pageTitle.Text = "Kategorie";
         }
 
         private void ViewChangeButton(object sender, RoutedEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow(1, "1", true);
+            MainWindow mainWindow = new MainWindow(userId, email, true);
             mainWindow.Show();
             this.Close();
+        }
+
+        private void AdminCompanyClicked(object sender, MouseButtonEventArgs e)
+        {
+            adminFrame.Content = new AdminOffer(false);
+            pageTitle.Text = "Firmy";
         }
     }
 }

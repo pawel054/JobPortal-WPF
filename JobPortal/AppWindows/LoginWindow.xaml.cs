@@ -1,4 +1,5 @@
-﻿using JobPortal.Class;
+﻿using JobPortal.AppWindows;
+using JobPortal.Class;
 using JobPortal.Database;
 using JobPortal.Pages;
 using System;
@@ -36,7 +37,7 @@ namespace JobPortal
             userPanel.Visibility = Visibility.Collapsed;
         }
 
-        public LoginWindow(Frame mainFrame, Window mainWindow, int userID, string email)
+        public LoginWindow(Frame mainFrame, Window mainWindow, int userID, string email, bool isAdmin)
         {
             InitializeComponent();
             this.mainFrame = mainFrame;
@@ -45,6 +46,8 @@ namespace JobPortal
             this.email = email;
             loginPanel.Visibility = Visibility.Collapsed;
             userPanel.Visibility = Visibility.Visible;
+
+            if (isAdmin) btnAdminPanel.Visibility = Visibility.Visible;
         }
 
         private void CloseWindowButton(object sender, RoutedEventArgs e)
@@ -149,6 +152,14 @@ namespace JobPortal
             MainWindow newWindow = new MainWindow();
             newWindow.Show();
             mainWindow.Close();
+        }
+
+        private void ProfileAdminButton(object sender, RoutedEventArgs e)
+        {
+           AdminWindow adminWindow = new AdminWindow(userID, email);
+           adminWindow.Show();
+            mainWindow.Close();
+           this.Close();
         }
     }
 }

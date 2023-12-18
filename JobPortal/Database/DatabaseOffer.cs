@@ -17,6 +17,7 @@ namespace JobPortal.Database
         public static List<Offer> GetLatestAddedOffers()
         {
             List<Offer> offers = new List<Offer>();
+            string ImageFullPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\Imgs\\Upload"));
 
             using (var db = new SqliteConnection($"Filename={dbpath}"))
             {
@@ -40,7 +41,7 @@ namespace JobPortal.Database
                         string dniPracy = reader.GetString(9);
                         string godzinyPracy = reader.GetString(10);
                         DateTime dataWaznosci = reader.GetDateTime(11);
-                        string img_src = reader.GetString(12);
+                        string img_src = Path.Combine(ImageFullPath, reader.GetString(12));
 
                         string firmaNazwa = reader.GetString(13);
                         string firmaAdres = reader.GetString(14);
@@ -62,6 +63,7 @@ namespace JobPortal.Database
         public static List<Offer> GetAllOffers()
         {
             List<Offer> offers = new List<Offer>();
+            string ImageFullPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\Imgs\\Upload"));
 
             using (var db = new SqliteConnection($"Filename={dbpath}"))
             {
@@ -85,7 +87,7 @@ namespace JobPortal.Database
                         string dniPracy = reader.GetString(9);
                         string godzinyPracy = reader.GetString(10);
                         DateTime dataWaznosci = reader.GetDateTime(11);
-                        string img_src = reader.GetString(12);
+                        string img_src = Path.Combine(ImageFullPath, reader.GetString(12));
 
                         string firmaNazwa = reader.GetString(13);
                         string firmaAdres = reader.GetString(14);
@@ -107,6 +109,7 @@ namespace JobPortal.Database
         public static List<Offer> GetOfferByID(int id)
         {
             List<Offer> offer = new List<Offer>();
+            string ImageFullPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\Imgs\\Upload"));
 
             using (var db = new SqliteConnection($"Filename={dbpath}"))
             {
@@ -131,7 +134,83 @@ namespace JobPortal.Database
                         string dniPracy = reader.GetString(9);
                         string godzinyPracy = reader.GetString(10);
                         DateTime dataWaznosci = reader.GetDateTime(11);
-                        string img_src = reader.GetString(12);
+                        string img_src = Path.Combine(ImageFullPath, reader.GetString(12));
+
+                        string firmaNazwa = reader.GetString(13);
+                        string firmaAdres = reader.GetString(14);
+                        string firmaInformacja = reader.GetString(15);
+
+                        string kategoriaNazwa = reader.GetString(16);
+
+                        Company company = new Company(firmaID, firmaNazwa, firmaAdres, firmaInformacja);
+                        Category category = new Category(kategoriaID, kategoriaNazwa);
+
+                        Offer readOffer = new Offer(ofertaID, company, category, nazwaStanowiska, poziomStanowiska, rodzajUmowy, rodzajPracy, wymiarZatrudnienia, wynagrodzenie, dniPracy, godzinyPracy, dataWaznosci, img_src);
+                        offer.Add(readOffer);
+                    }
+                    return offer;
+                }
+            }
+        }
+
+        public static List<Offer> GetOfferBySearch(string positionName, string companyName, string categoryName)
+        {
+            List<Offer> offer = new List<Offer>();
+            string ImageFullPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\Imgs\\Upload"));
+
+            using (var db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+                var sqlCommand = new StringBuilder("SELECT * FROM oferta INNER JOIN firma USING(firma_id) INNER JOIN kategoria USING(kategoria_id) WHERE 1 = 1");
+
+                if (!string.IsNullOrEmpty(positionName))
+                {
+                    sqlCommand.Append(" AND nazwa_stanowiska = @Name");
+                }
+
+                if (!string.IsNullOrEmpty(categoryName))
+                {
+                    sqlCommand.Append(" AND kategoria.nazwa = @CategoryName");
+                }
+
+                if (!string.IsNullOrEmpty(companyName))
+                {
+                    sqlCommand.Append(" AND firma.nazwa = @CompanyName");
+                }
+
+                var insertCommand = new SqliteCommand(sqlCommand.ToString(), db);
+
+                if (!string.IsNullOrEmpty(positionName))
+                {
+                    insertCommand.Parameters.AddWithValue("@Name", positionName);
+                }
+
+                if (!string.IsNullOrEmpty(categoryName))
+                {
+                    insertCommand.Parameters.AddWithValue("@CategoryName", categoryName);
+                }
+
+                if (!string.IsNullOrEmpty(companyName))
+                {
+                    insertCommand.Parameters.AddWithValue("@CompanyName", companyName);
+                }
+                using (SqliteDataReader reader = insertCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int ofertaID = reader.GetInt32(0);
+                        int firmaID = reader.GetInt32(1);
+                        int kategoriaID = reader.GetInt32(2);
+                        string nazwaStanowiska = reader.GetString(3);
+                        string poziomStanowiska = reader.GetString(4);
+                        string rodzajUmowy = reader.GetString(5);
+                        string rodzajPracy = reader.GetString(6);
+                        string wymiarZatrudnienia = reader.GetString(7);
+                        string wynagrodzenie = reader.GetString(8);
+                        string dniPracy = reader.GetString(9);
+                        string godzinyPracy = reader.GetString(10);
+                        DateTime dataWaznosci = reader.GetDateTime(11);
+                        string img_src = Path.Combine(ImageFullPath, reader.GetString(12));
 
                         string firmaNazwa = reader.GetString(13);
                         string firmaAdres = reader.GetString(14);

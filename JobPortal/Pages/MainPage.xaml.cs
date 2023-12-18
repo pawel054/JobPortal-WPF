@@ -28,6 +28,10 @@ namespace JobPortal.Pages
             InitializeComponent();
             this.mainFrame = mainFrame;
             itemsControl.DataContext = DatabaseOffer.GetLatestAddedOffers();
+            cmbCompany.DisplayMemberPath = "Name";
+            cmbCategory.DisplayMemberPath = "Name";
+            cmbCompany.ItemsSource = DatabaseAdmin.GetAllCompanies();
+            cmbCategory.ItemsSource = DatabaseAdmin.GetAllCategories();
         }
 
         private void OfferBoxClicked(object sender, MouseButtonEventArgs e)
@@ -41,7 +45,7 @@ namespace JobPortal.Pages
 
         private void SearchButton(object sender, RoutedEventArgs e)
         {
-            mainFrame.Content = new SearchPage(mainFrame);
+            mainFrame.Content = new SearchPage(mainFrame, txtStanowisko.Text, cmbCompany.Text, cmbCategory.Text);
         }
     }
 }

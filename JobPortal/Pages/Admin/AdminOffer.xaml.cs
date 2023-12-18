@@ -29,6 +29,24 @@ namespace JobPortal.Pages.Admin
             itemsControl.DataContext = DatabaseOffer.GetAllOffers();
         }
 
+        public AdminOffer(bool isCategory)
+        {
+            InitializeComponent();
+
+            if(isCategory)
+            {
+                offerView.Visibility = Visibility.Collapsed;
+                CategoryView.Visibility = Visibility.Visible;
+                itemsControlCategory.DataContext = DatabaseAdmin.GetAllCategories();
+            }
+            else
+            {
+                offerView.Visibility = Visibility.Collapsed;
+                CompanyView.Visibility = Visibility.Visible;
+                itemsControlCompany.DataContext = DatabaseAdmin.GetAllCompanies();
+            }
+        }
+
         private void BtnDodajClicked(object sender, RoutedEventArgs e)
         {
             FormWindow formWindow = new FormWindow();
@@ -57,6 +75,72 @@ namespace JobPortal.Pages.Admin
             this.Opacity = 0.5;
             formWindow.ShowDialog();
             this.Opacity = 1;
+        }
+
+        private void BtnDodajClickedCategory(object sender, RoutedEventArgs e)
+        {
+            FormWindow formWindow = new FormWindow(true);
+            formWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            formWindow.Owner = Application.Current.MainWindow;
+            formWindow.Height = 400;
+            formWindow.Width = 640;
+            this.Opacity = 0.5;
+            formWindow.ShowDialog();
+            this.Opacity = 1;
+        }
+
+        private void DeleteButtonCategory(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            int categoryID = (int)button.CommandParameter;
+            DatabaseAdmin.RemoveCategory(categoryID);
+        }
+
+        private void EditButtonCategory(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            int categoryID = (int)button.CommandParameter;
+
+            FormWindow formWindow = new FormWindow(true, categoryID);
+            formWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            formWindow.Owner = Application.Current.MainWindow;
+            formWindow.Height = 400;
+            this.Opacity = 0.5;
+            formWindow.ShowDialog();
+            this.Opacity = 1;
+
+        }
+
+        private void BtnDodajClickedCompany(object sender, RoutedEventArgs e)
+        {
+            FormWindow formWindow = new FormWindow(false);
+            formWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            formWindow.Owner = Application.Current.MainWindow;
+            formWindow.Height = 690;
+            this.Opacity = 0.5;
+            formWindow.ShowDialog();
+            this.Opacity = 1;
+        }
+
+        private void EditButtonCompany(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            int companyID = (int)button.CommandParameter;
+
+            FormWindow formWindow = new FormWindow(false, companyID);
+            formWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            formWindow.Owner = Application.Current.MainWindow;
+            formWindow.Height = 690;
+            this.Opacity = 0.5;
+            formWindow.ShowDialog();
+            this.Opacity = 1;
+        }
+
+        private void DeleteButtonCompany(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)sender;
+            int companyID = (int)button.CommandParameter;
+            DatabaseAdmin.RemoveCompany(companyID);
         }
     }
 }

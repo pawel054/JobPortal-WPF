@@ -51,6 +51,7 @@
                     <Image Source="../Imgs/UI/login_user.png" Width="200"/>
 
                     <Button Content="Profil użytkownika" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="45" Width="300" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="ProfileButton" Margin="0,40,0,0"/>
+                    <Button x:Name="btnAdminPanel" Content="Panel administratora" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="45" Width="300" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="ProfileAdminButton" Visibility="Collapsed" Margin="0,20,0,20"/>
                     <Button Content="Wyloguj" VerticalAlignment="Center" VerticalContentAlignment="Center"  Foreground="#400DD0" Background="Transparent" BorderBrush="#400DD0" BorderThickness="3" FontWeight="DemiBold" FontSize="18" Height="45" Width="300" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="LogoutButton" Margin="0,20,0,0"/>
                 </StackPanel>
             </Grid>

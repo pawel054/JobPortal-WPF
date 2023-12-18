@@ -57,6 +57,28 @@ namespace JobPortal.Database
             }
         }
 
+        public static void UpdateProfile(Profile profile)
+        {
+            using (var db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+                var insertCommand = new SqliteCommand();
+                insertCommand.Connection = db;
+                insertCommand.CommandText = "UPDATE profil SET imie = @Name, nazwisko = @Surname, data_urodzenia = @Date, numer_telefonu = @Phone, zdjecie_profilowe = @Img, adres_zamieszkania = @Adress, aktualne_stanowisko = @Position, aktualne_stanowisko_opis = @PositionInfo, podsumowanie_zawodowe = @Summary WHERE profil_id = @ID;";
+                insertCommand.Parameters.AddWithValue("@Name", profile.Name);
+                insertCommand.Parameters.AddWithValue("@Surname", profile.Surname);
+                insertCommand.Parameters.AddWithValue("@Date", profile.BirthDate);
+                insertCommand.Parameters.AddWithValue("@Phone", profile.PhoneNumber);
+                insertCommand.Parameters.AddWithValue("@Img", profile.ProfilePictureSrc);
+                insertCommand.Parameters.AddWithValue("@Adress", profile.Adress);
+                insertCommand.Parameters.AddWithValue("@Position", profile.WorkPosition);
+                insertCommand.Parameters.AddWithValue("@PositionInfo", profile.WorkPositionDescription);
+                insertCommand.Parameters.AddWithValue("@Summary", profile.CareerSummary);
+                insertCommand.Parameters.AddWithValue("@ID", profile.ProfileID);
+                insertCommand.ExecuteReader();
+            }
+        }
+
         public static void CreateProfile(int userId)
         {
             using (var db = new SqliteConnection($"Filename={dbpath}"))
