@@ -13,8 +13,9 @@ namespace JobPortal.Database
     {
         readonly private static string dbpath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JobPortalDatabase.db");
 
-        public static void InsertOffer(Offer offer)
+        public static int InsertOffer(Offer offer)
         {
+            int lastInsertedId = -1;
             using (var db = new SqliteConnection($"Filename={dbpath}"))
             {
                 db.Open();
@@ -34,7 +35,11 @@ namespace JobPortal.Database
                 insertCommand.Parameters.AddWithValue("@ExpirationDate", offer.DataWaznosci);
                 insertCommand.Parameters.AddWithValue("@ImageSrc", offer.SciezkaObraz);
                 insertCommand.ExecuteReader();
+
+                var selectLastIdCommand = new SqliteCommand("SELECT last_insert_rowid();", db);
+                lastInsertedId = Convert.ToInt32(selectLastIdCommand.ExecuteScalar());
             }
+            return lastInsertedId;
         }
 
         public static void UpdateOffer(Offer offer, bool updateImg)
@@ -87,9 +92,8 @@ namespace JobPortal.Database
                 db.Open();
                 var insertCommand = new SqliteCommand();
                 insertCommand.Connection = db;
-                insertCommand.CommandText = "INSERT INTO @Table VALUES(NULL, @Value, @ID);";
-                insertCommand.Parameters.AddWithValue("@Table", tableName);
-                insertCommand.Parameters.AddWithValue("@@Value", value);
+                insertCommand.CommandText = $"INSERT INTO {tableName} VALUES(NULL, @Value, @ID);";
+                insertCommand.Parameters.AddWithValue("@Value", value);
                 insertCommand.Parameters.AddWithValue("@ID", offerID);
                 insertCommand.ExecuteReader();
             }
@@ -386,26 +390,40 @@ namespace JobPortal.Database
             }
         }
 
-        public static int GetCountOfRecords(string tableName)
+        public static List<string> ReadDataBenefits(string tableName, int Id)
         {
-            int count = 0;
+            List<string> list = new List<string>();
+
             using (var db = new SqliteConnection($"Filename={dbpath}"))
             {
                 db.Open();
                 var insertCommand = new SqliteCommand();
                 insertCommand.Connection = db;
-                insertCommand.CommandText = $"SELECT COUNT(*) FROM {tableName}";
+                insertCommand.CommandText = $"SELECT * FROM {tableName} WHERE oferta_id=@ID";
+                insertCommand.Parameters.AddWithValue("@ID", Id);
                 using (SqliteDataReader reader = insertCommand.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int result = reader.GetInt32(0);
-                        count = result;
+                        string content = reader.GetString(1);
+                        list.Add(content);
                     }
-                    return count;
+                    return list;
                 }
             }
         }
+
+        public static int GetCountOfRecords(string tableName)
+        {
+            using (var db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+                var command = new SqliteCommand($"SELECT COUNT(*) FROM {tableName}", db);
+                int count = Convert.ToInt32(command.ExecuteScalar());
+                return count;
+            }
+        }
+
 
     }
 }

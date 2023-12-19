@@ -68,6 +68,8 @@ namespace JobPortal.AppWindows.CustomWindows
             SetComboboxSelectedItem(cmbCategory, offer.Category.Name);
             SetComboboxSelectedItem(cmbCompany, offer.Company.Name);
 
+            AddFromDatabaseToList(offerID);
+
             btnAdd.Visibility = Visibility.Collapsed;
             btnEdit.Visibility = Visibility.Visible;
         }
@@ -160,7 +162,7 @@ namespace JobPortal.AppWindows.CustomWindows
                     string ImagePath = CreateFilePath(true);
                     var SelectedItemCategory = cmbCategory.SelectedItem as Category;
                     var SelectedItemCompany = cmbCompany.SelectedItem as Company;
-                    DatabaseAdmin.InsertOffer(new Offer(SelectedItemCompany, SelectedItemCategory, txtPosition.Text, cmbPositionLevel.Text, cmbContract.Text, cmbWorkingType.Text, cmbEtat.Text, txtSalary.Text, txtWorkingDays.Text, txtWorkingHours.Text, DateTime.Parse(datePicker.Text), ImagePath));
+                    AddOfferDetails(DatabaseAdmin.InsertOffer(new Offer(SelectedItemCompany, SelectedItemCategory, txtPosition.Text, cmbPositionLevel.Text, cmbContract.Text, cmbWorkingType.Text, cmbEtat.Text, txtSalary.Text, txtWorkingDays.Text, txtWorkingHours.Text, DateTime.Parse(datePicker.Text), ImagePath)));
                     System.IO.File.Copy(selectedFilePath, ImagePath, true);
                     this.Close();
                 }
@@ -340,6 +342,26 @@ namespace JobPortal.AppWindows.CustomWindows
             }
         }
 
+        private void AddFromDatabaseToList(int offerID)
+        {
+            List<string> listBenefits = DatabaseAdmin.ReadDataBenefits("oferta_benefity", offerID);
+            foreach (string value in listBenefits)
+            {
+                offerDetailsListBox3.Items.Add(new TextBox { Text = value, Height = 40, Width = 350, FontSize = 18, HorizontalContentAlignment = HorizontalAlignment.Center, VerticalContentAlignment = VerticalAlignment.Center, Style = (Style)this.FindResource("PlaceholderTextBoxStyle"), Tag = "Benefit" });
+            }
+
+            List<string> listDuties = DatabaseAdmin.ReadDataBenefits("oferta_obowiazki", offerID);
+            foreach (string value in listDuties)
+            {
+                offerDetailsListBox.Items.Add(new TextBox { Text = value, Height = 40, Width = 350, FontSize = 18, HorizontalContentAlignment = HorizontalAlignment.Center, VerticalContentAlignment = VerticalAlignment.Center, Style = (Style)this.FindResource("PlaceholderTextBoxStyle"), Tag = "Benefit" });
+            }
+
+            List<string> listRequirements = DatabaseAdmin.ReadDataBenefits("oferta_wymagania", offerID);
+            foreach (string value in listRequirements)
+            {
+                offerDetailsListBox2.Items.Add(new TextBox { Text = value, Height = 40, Width = 350, FontSize = 18, HorizontalContentAlignment = HorizontalAlignment.Center, VerticalContentAlignment = VerticalAlignment.Center, Style = (Style)this.FindResource("PlaceholderTextBoxStyle"), Tag = "Benefit" });
+            }
+        }
         private void AddRequiremenmtsBtn(object sender, RoutedEventArgs e)
         {
             offerDetailsListBox2.Items.Add(new TextBox { Height = 40, Width = 350, FontSize = 18, HorizontalContentAlignment = HorizontalAlignment.Center, VerticalContentAlignment = VerticalAlignment.Center, Style = (Style)this.FindResource("PlaceholderTextBoxStyle"), Tag = "Wymóg" });
