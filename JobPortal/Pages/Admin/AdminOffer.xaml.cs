@@ -55,6 +55,7 @@ namespace JobPortal.Pages.Admin
             this.Opacity = 0.5;
             formWindow.ShowDialog();
             this.Opacity = 1;
+            itemsControl.DataContext = DatabaseOffer.GetAllOffers();
         }
 
         private void DeleteButton(object sender, RoutedEventArgs e)
@@ -62,6 +63,7 @@ namespace JobPortal.Pages.Admin
             var button = (Button)sender;
             int offerID = (int)button.CommandParameter;
             DatabaseAdmin.RemoveOffer(offerID);
+            itemsControl.DataContext = DatabaseOffer.GetAllOffers();
         }
 
         private void EditButton(object sender, RoutedEventArgs e)
@@ -75,6 +77,7 @@ namespace JobPortal.Pages.Admin
             this.Opacity = 0.5;
             formWindow.ShowDialog();
             this.Opacity = 1;
+            itemsControl.DataContext = DatabaseOffer.GetAllOffers();
         }
 
         private void BtnDodajClickedCategory(object sender, RoutedEventArgs e)
@@ -87,6 +90,7 @@ namespace JobPortal.Pages.Admin
             this.Opacity = 0.5;
             formWindow.ShowDialog();
             this.Opacity = 1;
+            itemsControlCategory.DataContext = DatabaseAdmin.GetAllCategories();
         }
 
         private void DeleteButtonCategory(object sender, RoutedEventArgs e)
@@ -94,6 +98,7 @@ namespace JobPortal.Pages.Admin
             var button = (Button)sender;
             int categoryID = (int)button.CommandParameter;
             DatabaseAdmin.RemoveCategory(categoryID);
+            itemsControlCategory.DataContext = DatabaseAdmin.GetAllCategories();
         }
 
         private void EditButtonCategory(object sender, RoutedEventArgs e)
@@ -108,7 +113,7 @@ namespace JobPortal.Pages.Admin
             this.Opacity = 0.5;
             formWindow.ShowDialog();
             this.Opacity = 1;
-
+            itemsControlCategory.DataContext = DatabaseAdmin.GetAllCategories();
         }
 
         private void BtnDodajClickedCompany(object sender, RoutedEventArgs e)
@@ -120,6 +125,7 @@ namespace JobPortal.Pages.Admin
             this.Opacity = 0.5;
             formWindow.ShowDialog();
             this.Opacity = 1;
+            itemsControlCompany.DataContext = DatabaseAdmin.GetAllCompanies();
         }
 
         private void EditButtonCompany(object sender, RoutedEventArgs e)
@@ -134,6 +140,7 @@ namespace JobPortal.Pages.Admin
             this.Opacity = 0.5;
             formWindow.ShowDialog();
             this.Opacity = 1;
+            itemsControlCompany.DataContext = DatabaseAdmin.GetAllCompanies();
         }
 
         private void DeleteButtonCompany(object sender, RoutedEventArgs e)
@@ -141,6 +148,7 @@ namespace JobPortal.Pages.Admin
             var button = (Button)sender;
             int companyID = (int)button.CommandParameter;
             DatabaseAdmin.RemoveCompany(companyID);
+            itemsControlCompany.DataContext = DatabaseAdmin.GetAllCompanies();
         }
     }
 }

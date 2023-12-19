@@ -23,26 +23,24 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Border Background="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"  BorderBrush="Transparent" Height="100" CornerRadius="30" Margin="0,50,0,0">
+        <Border Background="White" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" BorderBrush="Transparent" Height="100" CornerRadius="30" Margin="0,50,0,0">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
             </Border.Effect>
             <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="280"/>
                     <ColumnDefinition Width="230"/>
                     <ColumnDefinition Width="230"/>
-                    <ColumnDefinition Width="230"/>
-                    <ColumnDefinition Width="230"/>
-                    <ColumnDefinition Width="230"/>
+                    <ColumnDefinition Width="260"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="130"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBox x:Name="txtStanowisko" Grid.Column="0" Grid.Row="0" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Stanowisko"/>
-                <TextBox x:Name="txtKategoria" Grid.Column="1" Grid.Row="0" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Kategoria"/>
-                <TextBox x:Name="txtLokalizacja" Grid.Column="2" Grid.Row="0" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Lokalizacja"/>
-                <TextBox x:Name="txtOdleglosc" Grid.Column="3" Grid.Row="0" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Odległość (km)"/>
+                <TextBox x:Name="txtStanowisko" Grid.Column="0" Grid.Row="0" Width="220" Height="60" Margin="20,0,0,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Stanowisko"/>
+                <ComboBox x:Name="cmbCompany" Grid.Column="1" Grid.Row="0" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18"/>
+                <ComboBox x:Name="cmbCategory" Grid.Column="2" Grid.Row="0" Width="200" Height="60" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18" />
                 <Button Content="Szukaj" Grid.Column="4" Grid.Row="0" Foreground="White" Background="#400DD0" Width="200" Height="45" Margin="0,0,0,0" FontSize="17" Style="{StaticResource RoundedButtonStyle}" Tag="20"/>
             </Grid>
         </Border>
@@ -126,7 +124,7 @@
                                     <TextBlock Text="{Binding Company.Name}" FontSize="18" FontWeight="Medium" Foreground="Gray"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="0,0,50,0">
-                                    <Image Source="../Imgs/UI/login_user.png" Width="30"/>
+                                    <Image Source="../Imgs/UI/Icons/offer_icon6.png" Width="30"/>
                                     <StackPanel Margin="10,0,0,0">
                                         <TextBlock FontSize="15" FontWeight="Medium">
                                             <Run Text="{Binding Wynagrodzenie}"/>
@@ -136,11 +134,11 @@
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Margin="0,0,50,0">
-                                    <Image Source="../Imgs/UI/login_user.png" Width="30"/>
+                                    <Image Source="../Imgs/UI/Icons/offer_icon8.png" Width="30"/>
                                     <TextBlock Text="{Binding Company.Adress}" FontSize="15" FontWeight="Medium" Margin="10,0,0,0" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="1" VerticalAlignment="Center">
-                                    <Image Source="../Imgs/UI/login_user.png" Width="30"/>
+                                    <Image Source="../Imgs/UI/Icons/offer_icon7.png" Width="30"/>
                                     <TextBlock Text="{Binding DataWaznosci}" FontSize="15" FontWeight="Medium" VerticalAlignment="Center" Margin="10,0,0,0"/>
                                 </StackPanel>
                                 <Image Source="../Imgs/UI/login_user.png" Width="30" Grid.Column="4" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,30,0"/>

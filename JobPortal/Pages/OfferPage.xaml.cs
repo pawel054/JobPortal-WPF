@@ -46,7 +46,7 @@ namespace JobPortal.Pages
             detailDniPracy.Text = offer.DniPracy;
             detailGodzinyPracy.Text = offer.GodzinyPracy;
             detailWynagrodzenie.Text = offer.Wynagrodzenie;
-            detailDataWaznosci.Text = offer.DataWaznosci.ToString();
+            detailDataWaznosci.Text = offer.DataWaznosci.ToString("dd.MM.yyyy");
 
             moreAdres.Text = offer.Company.Adress;
             moreOpis.Text = offer.Company.Description;

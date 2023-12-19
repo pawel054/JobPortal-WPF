@@ -70,5 +70,12 @@ namespace JobPortal.Class
             DataWaznosci = dataWaznosci;
             SciezkaObraz = sciezkaObraz;
         }
+
+        public Offer(int offerID, Company company, string nazwaStanowiska)
+        {
+            OfferID = offerID;
+            Company = company;
+            NazwaStanowiska = nazwaStanowiska;
+        }
     }
 }

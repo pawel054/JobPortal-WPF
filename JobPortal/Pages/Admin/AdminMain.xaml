@@ -26,7 +26,7 @@
                         <TextBlock Text="Liczba ogłoszeń" FontSize="20" FontWeight="Medium" Foreground="#400DD0" Margin="30,10,0,0"/>
                         <StackPanel Orientation="Horizontal" Margin="30,15,0,0">
                             <Border CornerRadius="15" Background="#e6e0f9" BorderThickness="1" Width="60" Height="60">
-                                <Image Source="../../Imgs/UI/login_user.png" Grid.Column="0" Width="30" Margin="0,0,0,0"/>
+                                <Image Source="../../Imgs/UI/Icons/offer_icon2.png" Grid.Column="0" Width="30" Margin="0,0,0,0"/>
                             </Border>
                             <TextBlock x:Name="txtCountOffers" Text="0" VerticalAlignment="Center" FontSize="40" FontWeight="bold" Margin="15,0,0,0" Foreground="#400DD0"/>
                         </StackPanel>
@@ -98,10 +98,12 @@
                             <TextBlock Text="Nazwa" Grid.Column="2" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis" FontWeight="Medium"/>
                             <TextBlock Text="Adres" Grid.Column="3" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis" FontWeight="Medium"/>
                         </Grid>
-                        <ItemsControl x:Name="itemsControlFirmy">
-                            <ItemsPanelTemplate>
-                                <StackPanel/>
-                            </ItemsPanelTemplate>
+                        <ItemsControl x:Name="itemsControlFirmy" ItemsSource="{Binding .}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Margin="30,0,30,20">
@@ -111,10 +113,10 @@
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Image Source="../../Imgs/UI/login_user.png" Width="25" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="Przykład 1" Grid.Column="1" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
-                                        <TextBlock Text="Przykład 1" Grid.Column="2" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
-                                        <TextBlock Text="Przykład 1" Grid.Column="3" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
+                                        <Image Source="../../Imgs/UI/Icons/offer_icon10.png" Width="25" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding CompanyID}" Grid.Column="1" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding Name}" Grid.Column="2" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding Description}" Grid.Column="3" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
@@ -149,7 +151,7 @@
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Image Source="../../Imgs/UI/login_user.png" Width="25" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        <Image Source="../../Imgs/UI/Icons/offer_icon10.png" Width="25" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                         <TextBlock Text="Przykład 1" Grid.Column="1" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
                                         <TextBlock Text="Przykład 1" Grid.Column="2" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
                                         <TextBlock Text="Przykład 1" Grid.Column="3" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
@@ -174,10 +176,12 @@
                             <TextBlock Text="Stanowisko" Grid.Column="2" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis" FontWeight="Medium"/>
                             <TextBlock Text="Firma" Grid.Column="3" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis" FontWeight="Medium"/>
                         </Grid>
-                        <ItemsControl x:Name="itemsContrologloszenia">
-                            <ItemsPanelTemplate>
-                                <StackPanel/>
-                            </ItemsPanelTemplate>
+                        <ItemsControl x:Name="itemsControlOferty" ItemsSource="{Binding .}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Margin="30,0,30,20">
@@ -187,10 +191,10 @@
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
-                                        <Image Source="../../Imgs/UI/login_user.png" Width="25" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                        <TextBlock Text="Przykład 1" Grid.Column="1" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
-                                        <TextBlock Text="Przykład 1" Grid.Column="2" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
-                                        <TextBlock Text="Przykład 1" Grid.Column="3" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
+                                        <Image Source="../../Imgs/UI/Icons/offer_icon10.png" Width="25" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="{Binding OfferID}" Grid.Column="1" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding NazwaStanowiska}" Grid.Column="2" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding Company.Name}" Grid.Column="3" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>

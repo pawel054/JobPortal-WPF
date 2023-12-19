@@ -30,6 +30,9 @@ namespace JobPortal.Pages.Admin
             txtCountCompanies.Text = DatabaseAdmin.GetCountOfRecords("firma").ToString();
             txtCountUsers.Text = DatabaseAdmin.GetCountOfRecords("uzytkownik").ToString();
             txtCountAplications.Text = DatabaseAdmin.GetCountOfRecords("uzytkownik_aplikacje").ToString();
+
+            itemsControlOferty.DataContext = DatabaseAdmin.GetLatestRecords_Offer();
+            itemsControlFirmy.DataContext = DatabaseAdmin.GetLatestRecords_Company();
         }
     }
 }

@@ -9,6 +9,12 @@
   <ItemGroup>
     <Resource Include="Imgs\UI\Icons\offer_icon1.png" />
     <Resource Include="Imgs\UI\Icons\offer_icon10.png" />
+    <Resource Include="Imgs\UI\Icons\offer_icon11.png" />
+    <Resource Include="Imgs\UI\Icons\offer_icon12.png" />
+    <Resource Include="Imgs\UI\Icons\offer_icon13.png" />
+    <Resource Include="Imgs\UI\Icons\offer_icon14.png" />
+    <Resource Include="Imgs\UI\Icons\offer_icon15.png" />
+    <Resource Include="Imgs\UI\Icons\offer_icon16.png" />
     <Resource Include="Imgs\UI\Icons\offer_icon2.png" />
     <Resource Include="Imgs\UI\Icons\offer_icon3.png" />
     <Resource Include="Imgs\UI\Icons\offer_icon4.png" />
@@ -29,6 +35,12 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Imgs\UI\Icons\offer_icon10.png" />
+	  <None Remove="Imgs\UI\Icons\offer_icon11.png" />
+	  <None Remove="Imgs\UI\Icons\offer_icon12.png" />
+	  <None Remove="Imgs\UI\Icons\offer_icon13.png" />
+	  <None Remove="Imgs\UI\Icons\offer_icon14.png" />
+	  <None Remove="Imgs\UI\Icons\offer_icon15.png" />
+	  <None Remove="Imgs\UI\Icons\offer_icon16.png" />
 	  <None Remove="Imgs\UI\Icons\offer_icon4.png" />
 	  <None Remove="Imgs\UI\Icons\offer_icon5.png" />
 	  <None Remove="Imgs\UI\Icons\offer_icon6.png" />

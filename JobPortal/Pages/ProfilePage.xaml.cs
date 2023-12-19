@@ -102,8 +102,8 @@ namespace JobPortal.Pages
         private void PositionSaveButton(object sender, RoutedEventArgs e)
         {
             InsertInfoPositionSummary();
-            gridPosition.Visibility = Visibility.Collapsed;
-            gridPositionEdit.Visibility = Visibility.Visible;
+            gridPosition.Visibility = Visibility.Visible;
+            gridPositionEdit.Visibility = Visibility.Collapsed;
         }
 
         private void InsertInfoPositionSummary()

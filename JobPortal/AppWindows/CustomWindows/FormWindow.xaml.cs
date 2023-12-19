@@ -162,6 +162,7 @@ namespace JobPortal.AppWindows.CustomWindows
                     var SelectedItemCompany = cmbCompany.SelectedItem as Company;
                     DatabaseAdmin.InsertOffer(new Offer(SelectedItemCompany, SelectedItemCategory, txtPosition.Text, cmbPositionLevel.Text, cmbContract.Text, cmbWorkingType.Text, cmbEtat.Text, txtSalary.Text, txtWorkingDays.Text, txtWorkingHours.Text, DateTime.Parse(datePicker.Text), ImagePath));
                     System.IO.File.Copy(selectedFilePath, ImagePath, true);
+                    this.Close();
                 }
             }
             else
@@ -188,6 +189,7 @@ namespace JobPortal.AppWindows.CustomWindows
                     {
                         DatabaseAdmin.UpdateOffer(new Offer(offerID, SelectedItemCompany, SelectedItemCategory, txtPosition.Text, cmbPositionLevel.Text, cmbContract.Text, cmbWorkingType.Text, cmbEtat.Text, txtSalary.Text, txtWorkingDays.Text, txtWorkingHours.Text, DateTime.Parse(datePicker.Text), fileNameWithExtention), true);
                         System.IO.File.Copy(selectedFilePath, destinationFilePath, true);
+                        this.Close();
                     }
                     catch (Exception ex)
                     {
@@ -199,6 +201,7 @@ namespace JobPortal.AppWindows.CustomWindows
                     var SelectedItemCategory = cmbCategory.SelectedItem as Category;
                     var SelectedItemCompany = cmbCompany.SelectedItem as Company;
                     DatabaseAdmin.UpdateOffer(new Offer(offerID, SelectedItemCompany, SelectedItemCategory, txtPosition.Text, cmbPositionLevel.Text, cmbContract.Text, cmbWorkingType.Text, cmbEtat.Text, txtSalary.Text, txtWorkingDays.Text, txtWorkingHours.Text, DateTime.Parse(datePicker.Text)), false);
+                    this.Close();
                 }
             }
         }
@@ -263,14 +266,20 @@ namespace JobPortal.AppWindows.CustomWindows
         private void AddButtonCategory(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtCategoryName.Text))
+            {
                 DatabaseAdmin.InsertCategory(new Category(txtCategoryName.Text));
+                this.Close();
+            }
             else
                 MessageBox.Show("Pole nie może być puste!");
         }
         private void EditButtonCategory(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtCategoryName.Text))
+            {
                 DatabaseAdmin.UpdateCategory(new Category(categoryID, txtCategoryName.Text));
+                this.Close();
+            }
             else
                 MessageBox.Show("Pole nie może być puste!");
         }
@@ -278,7 +287,10 @@ namespace JobPortal.AppWindows.CustomWindows
         private void AddButtonCompany(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtCompanyName.Text) && !string.IsNullOrEmpty(txtCompanyAdress.Text) && !string.IsNullOrEmpty(txtCompanyInfo.Text))
+            {
                 DatabaseAdmin.InsertCompany(new Company(txtCompanyName.Text, txtCompanyAdress.Text, txtCompanyInfo.Text));
+                this.Close();
+            }
             else
                 MessageBox.Show("Pola nie mogą być puste!");
         }
@@ -286,7 +298,10 @@ namespace JobPortal.AppWindows.CustomWindows
         private void EditButtonCompany(object sender, RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txtCompanyName.Text) && !string.IsNullOrEmpty(txtCompanyAdress.Text) && !string.IsNullOrEmpty(txtCompanyInfo.Text))
+            {
                 DatabaseAdmin.UpdateCompany(new Company(companyID, txtCompanyName.Text, txtCompanyAdress.Text, txtCompanyInfo.Text));
+                this.Close();
+            }
             else
                 MessageBox.Show("Pola nie mogą być puste!");
         }

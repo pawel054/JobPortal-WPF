@@ -47,7 +47,11 @@ namespace JobPortal
             loginPanel.Visibility = Visibility.Collapsed;
             userPanel.Visibility = Visibility.Visible;
 
-            if (isAdmin) btnAdminPanel.Visibility = Visibility.Visible;
+            if (isAdmin)
+            {
+                btnAdminPanel.Visibility = Visibility.Visible;
+                btnUserOffers.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void CloseWindowButton(object sender, RoutedEventArgs e)
@@ -111,6 +115,7 @@ namespace JobPortal
             if (status_ok)
             {
                 DatabaseCreator.AddNewUser(new User(email, HashPassword(pass)));
+                MessageBox.Show("Utworzono konto!");
             }
         }
 

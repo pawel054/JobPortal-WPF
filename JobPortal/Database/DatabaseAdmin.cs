@@ -320,13 +320,68 @@ namespace JobPortal.Database
                     {
                         int firmaID = reader.GetInt32(0);
                         string Nazwa = reader.GetString(1);
-                        string Adres = reader.GetString(1);
-                        string Opis = reader.GetString(2);
+                        string Adres = reader.GetString(2);
+                        string Opis = reader.GetString(3);
 
                         Company company = new Company(firmaID, Nazwa, Adres, Opis);
                         companies.Add(company);
                     }
                     return companies;
+                }
+            }
+        }
+
+        public static List<Company> GetLatestRecords_Company()
+        {
+            List<Company> companies = new List<Company>();
+
+            using (var db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+                var insertCommand = new SqliteCommand();
+                insertCommand.Connection = db;
+                insertCommand.CommandText = "SELECT * FROM firma LIMIT 6;";
+                using (SqliteDataReader reader = insertCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int firmaID = reader.GetInt32(0);
+                        string Nazwa = reader.GetString(1);
+                        string Adres = reader.GetString(2);
+                        string Opis = reader.GetString(3);
+
+                        Company company = new Company(firmaID, Nazwa, Adres, Opis);
+                        companies.Add(company);
+                    }
+                    return companies;
+                }
+            }
+        }
+
+        public static List<Offer> GetLatestRecords_Offer()
+        {
+            List<Offer> offers = new List<Offer>();
+
+            using (var db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+                var insertCommand = new SqliteCommand();
+                insertCommand.Connection = db;
+                insertCommand.CommandText = "SELECT * FROM oferta INNER JOIN firma USING(firma_id) LIMIT 6;";
+                using (SqliteDataReader reader = insertCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int offerID = reader.GetInt32(0);
+                        string Nazwa = reader.GetString(3);
+                        string nazwaFirmy = reader.GetString(13);
+
+                        Company company = new Company(nazwaFirmy);
+
+                        Offer offer = new Offer(offerID, company, Nazwa);
+                        offers.Add(offer);
+                    }
+                    return offers;
                 }
             }
         }
