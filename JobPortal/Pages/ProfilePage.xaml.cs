@@ -80,6 +80,34 @@ namespace JobPortal.Pages
 
         private void InfoSaveButton(object sender, RoutedEventArgs e)
         {
+            InsertInfoPositionSummary();
+            gridInfo.Visibility = Visibility.Visible;
+            gridInfo_Edit.Visibility = Visibility.Collapsed;
+        }
+
+        private void EditInfoButton(object sender, RoutedEventArgs e)
+        {
+            LoadDataFromDatabaseEdit(userID, email);
+            gridInfo.Visibility = Visibility.Collapsed;
+            gridInfo_Edit.Visibility = Visibility.Visible;
+        }
+
+        private void EditPositionButton(object sender, RoutedEventArgs e)
+        {
+            LoadDataFromDatabaseEdit(userID, email);
+            gridPosition.Visibility = Visibility.Collapsed;
+            gridPositionEdit.Visibility = Visibility.Visible;
+        }
+
+        private void PositionSaveButton(object sender, RoutedEventArgs e)
+        {
+            InsertInfoPositionSummary();
+            gridPosition.Visibility = Visibility.Collapsed;
+            gridPositionEdit.Visibility = Visibility.Visible;
+        }
+
+        private void InsertInfoPositionSummary()
+        {
             string date = null;
             string inputText = txtNameSurnameEdit.Text;
             string[] parts = inputText.Split(' ');
@@ -90,16 +118,21 @@ namespace JobPortal.Pages
             if (txtBirthDateEdit.Text == "brak informacji") date = new DateTime(1900, 1, 1).ToString();
 
             DatabaseProfile.UpdateProfile(new Profile(profileID, firstName, lastName, DateTime.Parse(date), txtPhoneNumberEdit.Text, profilePictureEdit.Source.ToString(), txtAdressEdit.Text, txtCurrentPositionEdit.Text, txtCurrentPositionDescriptionEdit.Text, txtSummaryEdit.Text));
-            gridInfo.Visibility = Visibility.Visible;
-            gridInfo_Edit.Visibility = Visibility.Collapsed;
             LoadDataFromDatabase(userID, email);
         }
 
-        private void EditInfoButton(object sender, RoutedEventArgs e)
+        private void SummarySaveButton(object sender, RoutedEventArgs e)
+        {
+            InsertInfoPositionSummary();
+            gridSummary.Visibility = Visibility.Visible;
+            gridSummaryEdit.Visibility = Visibility.Collapsed;
+        }
+
+        private void EditSummaryButton(object sender, RoutedEventArgs e)
         {
             LoadDataFromDatabaseEdit(userID, email);
-            gridInfo.Visibility = Visibility.Collapsed;
-            gridInfo_Edit.Visibility = Visibility.Visible;
+            gridSummary.Visibility = Visibility.Collapsed;
+            gridSummaryEdit.Visibility = Visibility.Visible;
         }
     }
 }

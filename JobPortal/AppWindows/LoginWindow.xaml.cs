@@ -161,5 +161,10 @@ namespace JobPortal
             mainWindow.Close();
            this.Close();
         }
+
+        private void ProfilOffersButton(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

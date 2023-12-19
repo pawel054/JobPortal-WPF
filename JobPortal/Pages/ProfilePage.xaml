@@ -168,7 +168,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Aktualne stanowisko" Grid.Column="0" Foreground="White" FontSize="25" Margin="25,0,0,0"/>
-                            <Button Grid.Column="1" Height="30" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Margin="0,0,20,0">
+                            <Button Grid.Column="1" Height="30" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Margin="0,0,20,0" Click="EditPositionButton">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
@@ -178,7 +178,7 @@
                             </Button>
                         </Grid>
                     </Border>
-                    <Grid x:Name="dataExistPosition" Grid.Row="1" Margin="20,20,0,0">
+                    <Grid x:Name="gridPosition" Grid.Row="1" Margin="20,20,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
@@ -188,15 +188,17 @@
                         <TextBlock Text="Opis" Grid.Row="1" FontSize="18" Foreground="#400DD0" Margin="0,20,0,5"/>
                         <TextBlock x:Name="txtCurrentPositionDescription" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque convallis nibh sit amet mi fringilla pellentesque. " TextWrapping="Wrap" Grid.Row="2" FontSize="20" Margin="0,0,0,20"/>
                     </Grid>
-                    <Grid x:Name="dataExistPositionEdit" Grid.Row="1" Margin="20,20,0,0" Visibility="Collapsed">
+                    <Grid x:Name="gridPositionEdit" Grid.Row="1" Margin="20,20,0,0" Visibility="Collapsed">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock x:Name="txtCurrentPositionEdit" Text="Stanowisko" Grid.Row="0" FontSize="23" FontWeight="DemiBold"/>
+                        <TextBox x:Name="txtCurrentPositionEdit" Text="Stanowisko" Grid.Row="0" FontWeight="DemiBold" Height="35" Width="300" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="23" Margin="10,0,0,0" Padding="10,0,0,0" Style="{StaticResource PlaceholderTextBoxStyle}"/>
                         <TextBlock Text="Opis" Grid.Row="1" FontSize="18" Foreground="#400DD0" Margin="0,20,0,5"/>
-                        <TextBlock x:Name="txtCurrentPositionDescriptionEdit" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque convallis nibh sit amet mi fringilla pellentesque. " TextWrapping="Wrap" Grid.Row="2" FontSize="20" Margin="0,0,0,20"/>
+                        <TextBox x:Name="txtCurrentPositionDescriptionEdit" TextWrapping="Wrap" Grid.Row="2" Height="35" Width="300" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="10,0,0,0" Padding="10,0,0,0" Style="{StaticResource PlaceholderTextBoxStyle}"/>
+                        <Button Content="Zapisz" Grid.Row="3" HorizontalAlignment="Left" Foreground="White" Background="#400DD0" Width="150" Height="45" FontSize="17" Margin="10,10,0,20" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="PositionSaveButton"/>
                     </Grid>
                     <StackPanel x:Name="addNewPosition" Grid.Row="1" Visibility="Collapsed">
                         <Border Background="Transparent" Width="200" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#400DD0" BorderThickness="3" CornerRadius="20" Margin="0,20,0,20">
@@ -301,7 +303,7 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Podsumowanie zawodowe" Grid.Column="0" Foreground="White" FontSize="25" Margin="25,0,0,0"/>
-                            <Button Grid.Column="1" Height="30" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Margin="0,0,20,0">
+                            <Button Grid.Column="1" Height="30" HorizontalAlignment="Right" Background="Transparent" BorderThickness="0" Margin="0,0,20,0" Click="EditSummaryButton">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="../Imgs/UI/login_user.png" Width="25" Margin="0,0,5,0"/>
@@ -311,7 +313,7 @@
                             </Button>
                         </Grid>
                     </Border>
-                    <Grid x:Name="dataExistSummary" Grid.Row="1" Margin="20,20,0,0">
+                    <Grid x:Name="gridSummary" Grid.Row="1" Margin="20,20,0,0">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
@@ -319,13 +321,15 @@
                         <TextBlock Text="Opis" Grid.Row="0" FontSize="18" Foreground="#400DD0" Margin="0,0,0,5"/>
                         <TextBlock x:Name="txtSummary" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque convallis nibh sit amet mi fringilla pellentesque. " TextWrapping="Wrap" Grid.Row="1" FontSize="20" Margin="0,0,0,20"/>
                     </Grid>
-                    <Grid x:Name="dataExistSummaryEdit" Grid.Row="1" Margin="20,20,0,0" Visibility="Collapsed">
+                    <Grid x:Name="gridSummaryEdit" Grid.Row="1" Margin="20,20,0,0" Visibility="Collapsed">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <TextBlock Text="Opis" Grid.Row="0" FontSize="18" Foreground="#400DD0" Margin="0,0,0,5"/>
-                        <TextBlock x:Name="txtSummaryEdit" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque convallis nibh sit amet mi fringilla pellentesque. " TextWrapping="Wrap" Grid.Row="1" FontSize="20" Margin="0,0,0,20"/>
+                        <TextBox x:Name="txtSummaryEdit" TextWrapping="Wrap" Grid.Row="1"  Height="100" MinWidth="270" Width="300" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="10,0,0,0" Padding="10,10,0,0" Style="{StaticResource PlaceholderTextBoxStyle}"/>
+                        <Button Content="Zapisz" Grid.Row="2" HorizontalAlignment="Left" Foreground="White" Background="#400DD0" Width="150" Height="45" FontSize="17" Margin="10,10,0,20" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="SummarySaveButton"/>
                     </Grid>
                     <StackPanel x:Name="addNewSummary" Grid.Row="1" Visibility="Collapsed">
                         <Border Background="Transparent" Width="200" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#400DD0" BorderThickness="3" CornerRadius="20" Margin="0,20,0,20">
