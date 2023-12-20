@@ -167,9 +167,17 @@ namespace JobPortal
            this.Close();
         }
 
-        private void ProfilOffersButton(object sender, RoutedEventArgs e)
+        private void ProfielOffersButton(object sender, RoutedEventArgs e)
         {
+            userPanel.Visibility = Visibility.Collapsed;
+            applicationPanel.Visibility = Visibility.Visible;
+            itemsControlApplication.DataContext = DatabaseOffer.GetApplicationByID(userID);
+        }
 
+        private void DeleteApplicationBUtton(object sender, RoutedEventArgs e)
+        {
+            DatabaseOffer.DeleteApplication(userID);
+            itemsControlApplication.DataContext = DatabaseOffer.GetApplicationByID(userID);
         }
     }
 }

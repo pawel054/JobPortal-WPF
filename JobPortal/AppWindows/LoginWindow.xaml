@@ -52,8 +52,40 @@
 
                     <Button Content="Profil użytkownika" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="45" Width="300" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="ProfileButton" Margin="0,40,0,0"/>
                     <Button x:Name="btnAdminPanel" Content="Panel administratora" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="45" Width="300" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="ProfileAdminButton" Visibility="Collapsed" Margin="0,20,0,20"/>
-                    <Button x:Name="btnUserOffers" Content="Moje oferty" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="45" Width="300" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="ProfilOffersButton" Margin="0,20,0,20"/>
+                    <Button x:Name="btnUserOffers" Content="Moje oferty" VerticalAlignment="Center" VerticalContentAlignment="Center" Background="#400DD0" Foreground="White" FontWeight="DemiBold" FontSize="18" Height="45" Width="300" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="ProfielOffersButton" Margin="0,20,0,20"/>
                     <Button Content="Wyloguj" VerticalAlignment="Center" VerticalContentAlignment="Center"  Foreground="#400DD0" Background="Transparent" BorderBrush="#400DD0" BorderThickness="3" FontWeight="DemiBold" FontSize="18" Height="45" Width="300" Style="{StaticResource RoundedButtonStyle}" Tag="20" Click="LogoutButton" Margin="0,20,0,0"/>
+                </StackPanel>
+
+                <StackPanel x:Name="applicationPanel" Grid.Row="1" Visibility="Collapsed">
+                    <TextBlock Text="Moje oferty" HorizontalAlignment="Center" FontWeight="Bold" FontSize="35" Margin="0,0,0,30"/>
+                    <ItemsControl x:Name="itemsControlApplication" ItemsSource="{Binding .}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="30,0,30,20" Background="White" Height="50" CornerRadius="20">
+                                    <Border.Effect>
+                                        <DropShadowEffect ShadowDepth="10" BlurRadius="30" Color="Black" Opacity="0.3" Direction="270"/>
+                                    </Border.Effect>
+                                    <Grid VerticalAlignment="Center" Margin="10,0,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding offer.NazwaStanowiska}" Height="30" Width="140" TextWrapping="Wrap" Grid.Column="0" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding offer.Company.Name}" Grid.Column="1" Height="30" Width="60" TextWrapping="Wrap" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
+                                        <TextBlock Text="{Binding Status}" Grid.Column="2" Height="30" Width="80" FontSize="18" Margin="15,0,0,0" TextTrimming="CharacterEllipsis"/>
+                                        <Button Content="Usuń" BorderThickness="0" Grid.Column="3" Background="PaleVioletRed" Width="60" Height="30" VerticalAlignment="Center" Style="{StaticResource RoundedButtonStyle}" Tag="10" Click="DeleteApplicationBUtton"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
             </Grid>
         </Grid>

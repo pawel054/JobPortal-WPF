@@ -22,7 +22,8 @@ namespace JobPortal.Pages
     public partial class SearchPage : Page
     {
         private Frame mainFrame;
-        public SearchPage(Frame mainFrame, string positionName, string companyName, string categoryName)
+        private int userID;
+        public SearchPage(Frame mainFrame, string positionName, string companyName, string categoryName, int userID)
         {
             InitializeComponent();
             this.mainFrame = mainFrame;
@@ -33,7 +34,7 @@ namespace JobPortal.Pages
         {
             var button = (Border)sender;
             int offerID = (int)button.Tag;
-            mainFrame.Content = new OfferPage(mainFrame, offerID);
+            mainFrame.Content = new OfferPage(mainFrame, offerID, userID);
         }
     }
 }

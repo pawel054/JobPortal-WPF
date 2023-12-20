@@ -30,7 +30,7 @@ namespace JobPortal
         {
             InitializeComponent();
             DatabaseCreator.CreateDb();
-            mainFrame.Content = new MainPage(mainFrame);
+            mainFrame.Content = new MainPage(mainFrame, userId);
             btnZaloguj.Visibility = Visibility.Visible;
             btnKonto.Visibility = Visibility.Collapsed;
         }
@@ -40,7 +40,7 @@ namespace JobPortal
             InitializeComponent();
             btnZaloguj.Visibility = Visibility.Collapsed;
             btnKonto.Visibility = Visibility.Visible;
-            mainFrame.Content = new MainPage(mainFrame);
+            mainFrame.Content = new MainPage(mainFrame, userId);
             this.email = email;
             this.userId = userId;
             this.isAdmin = isAdmin;
@@ -58,7 +58,7 @@ namespace JobPortal
 
         private void MenuMainPage(object sender, MouseButtonEventArgs e)
         {
-            mainFrame.Content = new MainPage(mainFrame);
+            mainFrame.Content = new MainPage(mainFrame, userId);
         }
 
         private void AccountButton(object sender, RoutedEventArgs e)

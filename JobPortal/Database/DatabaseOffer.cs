@@ -310,5 +310,72 @@ namespace JobPortal.Database
             }
         }
 
+        public static void InsertApplication(UserApplication application)
+        {
+            using (var db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+                var insertCommand = new SqliteCommand();
+                insertCommand.Connection = db;
+                insertCommand.CommandText = "INSERT INTO uzytkownik_aplikacje VALUES(NULL, @UserID, @OfferID, @Status);";
+                insertCommand.Parameters.AddWithValue("@UserID", application.user.UserID);
+                insertCommand.Parameters.AddWithValue("@OfferID", application.offer.OfferID);
+                insertCommand.Parameters.AddWithValue("@Status", application.Status);
+                insertCommand.ExecuteReader();
+            }
+        }
+
+        public static List<UserApplication> GetApplicationByID(int id)
+        {
+            List<UserApplication> applications = new List<UserApplication>();
+
+            using (var db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+                var insertCommand = new SqliteCommand();
+                insertCommand.Connection = db;
+                insertCommand.CommandText = "SELECT * FROM uzytkownik_aplikacje INNER JOIN uzytkownik USING(user_id) INNER JOIN oferta USING(oferta_id) WHERE user_id=@ID";
+                insertCommand.Parameters.AddWithValue("@ID", id);
+                using (SqliteDataReader reader = insertCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int appliactionId = reader.GetInt32(0);
+                        int userId = reader.GetInt32(1);
+                        int offerID = reader.GetInt32(2);
+                        string status = reader.GetString(3);
+
+                        string email = reader.GetString(4);
+                        string passoword = reader.GetString(5);
+                        bool isAdmin = reader.GetBoolean(6);
+
+                        int companyID = reader.GetInt32(7);
+                        int categoryID = reader.GetInt32(8);
+                        string positionName = reader.GetString(9);
+
+                        User user = new User(email, passoword, isAdmin);
+                        Offer offer = new Offer(new Company(DatabaseAdmin.GetCompanyName(companyID)), positionName);
+
+                        UserApplication userApplication = new UserApplication(user, offer, status);
+                        applications.Add(userApplication);
+                    }
+                    return applications;
+                }
+            }
+        }
+
+        public static void DeleteApplication(int id)
+        {
+            using (var db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+                var insertCommand = new SqliteCommand();
+                insertCommand.Connection = db;
+                insertCommand.CommandText = "DELETE FROM uzytkownik_aplikacje WHERE user_id=@ID";
+                insertCommand.Parameters.AddWithValue("@ID", id);
+                insertCommand.ExecuteReader();
+            }
+        }
+
     }
 }

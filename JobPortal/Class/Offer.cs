@@ -77,5 +77,11 @@ namespace JobPortal.Class
             Company = company;
             NazwaStanowiska = nazwaStanowiska;
         }
+
+        public Offer(Company company, string nazwaStanowiska)
+        {
+            Company = company;
+            NazwaStanowiska = nazwaStanowiska;
+        }
     }
 }

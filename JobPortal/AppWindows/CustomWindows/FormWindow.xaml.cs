@@ -362,6 +362,7 @@ namespace JobPortal.AppWindows.CustomWindows
                 offerDetailsListBox2.Items.Add(new TextBox { Text = value, Height = 40, Width = 350, FontSize = 18, HorizontalContentAlignment = HorizontalAlignment.Center, VerticalContentAlignment = VerticalAlignment.Center, Style = (Style)this.FindResource("PlaceholderTextBoxStyle"), Tag = "Benefit" });
             }
         }
+
         private void AddRequiremenmtsBtn(object sender, RoutedEventArgs e)
         {
             offerDetailsListBox2.Items.Add(new TextBox { Height = 40, Width = 350, FontSize = 18, HorizontalContentAlignment = HorizontalAlignment.Center, VerticalContentAlignment = VerticalAlignment.Center, Style = (Style)this.FindResource("PlaceholderTextBoxStyle"), Tag = "Wymóg" });

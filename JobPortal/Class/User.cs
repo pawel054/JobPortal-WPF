@@ -13,6 +13,14 @@ namespace JobPortal.Class
         public string Password { get; set; }
         public bool IsAdmin { get; set; }
 
+        public User(int UserID, string UserEmail, string UserPassword, bool IsAdmin)
+        {
+            this.UserID = UserID;
+            this.Email = UserEmail;
+            this.Password = UserPassword;
+            this.IsAdmin = IsAdmin;
+        }
+
         public User(string UserEmail, string UserPassword)
         {
             this.Email = UserEmail;

@@ -63,6 +63,9 @@ namespace JobPortal.Pages.Admin
             var button = (Button)sender;
             int offerID = (int)button.CommandParameter;
             DatabaseAdmin.RemoveOffer(offerID);
+            DatabaseAdmin.DeleteDataBenefits("oferta_benefity", offerID);
+            DatabaseAdmin.DeleteDataBenefits("oferta_obowiazki", offerID);
+            DatabaseAdmin.DeleteDataBenefits("oferta_wymagania", offerID);
             itemsControl.DataContext = DatabaseOffer.GetAllOffers();
         }
 

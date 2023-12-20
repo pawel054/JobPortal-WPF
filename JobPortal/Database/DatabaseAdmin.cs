@@ -79,10 +79,6 @@ namespace JobPortal.Database
                 insertCommand.Parameters.AddWithValue("@ID", Id);
                 insertCommand.ExecuteReader();
             }
-            if (filePath != null)
-            {
-                File.Delete(filePath);
-            }
         }
 
         public static void InsertOfferTables(string tableName, string value, int offerID)
@@ -154,6 +150,8 @@ namespace JobPortal.Database
             }
         }
 
+
+
         public static void UpdateCompany(Company company)
         {
             using (var db = new SqliteConnection($"Filename={dbpath}"))
@@ -205,6 +203,30 @@ namespace JobPortal.Database
                         categories.Add(readCategory);
                     }
                     return categories;
+                }
+            }
+        }
+
+        public static string GetCompanyName(int id)
+        {
+            string companyname = null;
+
+            using (var db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+                var insertCommand = new SqliteCommand();
+                insertCommand.Connection = db;
+                insertCommand.CommandText = "SELECT nazwa FROM firma WHERE firma_id=@ID";
+                insertCommand.Parameters.AddWithValue("@ID", id);
+                using (SqliteDataReader reader = insertCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string name = reader.GetString(0);
+
+                        companyname = name;
+                    }
+                    return companyname;
                 }
             }
         }
@@ -410,6 +432,19 @@ namespace JobPortal.Database
                     }
                     return list;
                 }
+            }
+        }
+
+        public static void DeleteDataBenefits(string tableName, int Id)
+        {
+            using (var db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+                var insertCommand = new SqliteCommand();
+                insertCommand.Connection = db;
+                insertCommand.CommandText = $"DELETE FROM {tableName} WHERE oferta_id=@ID";
+                insertCommand.Parameters.AddWithValue("@ID", Id);
+                insertCommand.ExecuteReader();
             }
         }
 

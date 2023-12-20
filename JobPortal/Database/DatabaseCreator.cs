@@ -149,5 +149,33 @@ namespace JobPortal.Database
             }
         }
 
+        public static List<User> GetUserByID(int id)
+        {
+            List<User> user = new List<User>();
+
+            using (var db = new SqliteConnection($"Filename={dbpath}"))
+            {
+                db.Open();
+                var insertCommand = new SqliteCommand();
+                insertCommand.Connection = db;
+                insertCommand.CommandText = "SELECT * FROM uzytkownik WHERE user_id=@ID";
+                insertCommand.Parameters.AddWithValue("@ID", id);
+                using (SqliteDataReader reader = insertCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int userID = reader.GetInt32(0);
+                        string email = reader.GetString(1);
+                        string password = reader.GetString(2);
+                        bool isAdmin = reader.GetBoolean(3);
+
+                        User readUser = new User(userID, email, password, isAdmin);
+                        user.Add(readUser);
+                    }
+                    return user;
+                }
+            }
+        }
+
     }
 }

@@ -23,13 +23,15 @@ namespace JobPortal.Pages
     public partial class OfferPage : Page
     {
         private Frame mainFrame;
-        private int iD;
-        public OfferPage(Frame mainFrame, int iD)
+        private int offeriD;
+        private int userID;
+        public OfferPage(Frame mainFrame, int offeriD, int userID)
         {
             InitializeComponent();
             this.mainFrame = mainFrame;
-            this.iD = iD;
-            LoadDataFromDatabase(iD);
+            this.offeriD = offeriD;
+            this.userID = userID;
+            LoadDataFromDatabase(offeriD);
         }
 
         private void LoadDataFromDatabase(int offerId)
@@ -56,6 +58,12 @@ namespace JobPortal.Pages
             itemsControlBenefity.DataContext = DatabaseOffer.GetOfferBenefitsByID(offerId);
         }
 
-
+        private void AddApplication(object sender, RoutedEventArgs e)
+        {
+            Offer offer = DatabaseOffer.GetOfferByID(offeriD).FirstOrDefault();
+            User user = DatabaseCreator.GetUserByID(userID).FirstOrDefault();
+            DatabaseOffer.InsertApplication(new UserApplication(user, offer, "Oczekuje"));
+            MessageBox.Show("Złożono aplikacje");
+        }
     }
 }

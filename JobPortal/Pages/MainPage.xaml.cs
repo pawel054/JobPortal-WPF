@@ -23,10 +23,12 @@ namespace JobPortal.Pages
     public partial class MainPage : Page
     {
         private Frame mainFrame;
-        public MainPage(Frame mainFrame)
+        private int userID;
+        public MainPage(Frame mainFrame, int userID)
         {
             InitializeComponent();
             this.mainFrame = mainFrame;
+            this.userID = userID;
             itemsControl.DataContext = DatabaseOffer.GetLatestAddedOffers();
             cmbCompany.DisplayMemberPath = "Name";
             cmbCategory.DisplayMemberPath = "Name";
@@ -39,13 +41,13 @@ namespace JobPortal.Pages
             var test = ((FrameworkElement)sender).DataContext;
             if(test is Offer offer)
             {
-                mainFrame.Content = new OfferPage(mainFrame, offer.OfferID);
+                mainFrame.Content = new OfferPage(mainFrame, offer.OfferID, userID);
             }
         }
 
         private void SearchButton(object sender, RoutedEventArgs e)
         {
-            mainFrame.Content = new SearchPage(mainFrame, txtStanowisko.Text, cmbCompany.Text, cmbCategory.Text);
+            mainFrame.Content = new SearchPage(mainFrame, txtStanowisko.Text, cmbCompany.Text, cmbCategory.Text, userID);
         }
     }
 }
